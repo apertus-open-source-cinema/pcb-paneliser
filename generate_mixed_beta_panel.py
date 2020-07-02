@@ -64,8 +64,6 @@ def main():
     panel_height = frame_width * 2 + cutout_width * 3 + 57.15 + 111.76;
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
-    # generate_pcb_frame(board_cutout_msp, panel_width, panel_height)
-
     add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.3", 0, 0)
     add_pcb("axiom_beta_interface_dummy_v0.13_r1.1", 57.15 + cutout_width,
             0)

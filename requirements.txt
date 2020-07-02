@@ -1,0 +1,5 @@
+ezdxf
+pcb-tools
+pcb-tools-extension
+tabulate
+shapely

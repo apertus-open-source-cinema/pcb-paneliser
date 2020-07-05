@@ -3,6 +3,7 @@ import os
 import ezdxf
 import gerberex
 from gerberex import GerberComposition
+from gerberex import DrillComposition
 from tabulate import tabulate
 
 from frame_generator import generate_outer_frame, generate_pcb_frame, generate_pcb_bridges
@@ -28,6 +29,7 @@ cream_top_layer_context = GerberComposition()
 cream_bot_layer_context = GerberComposition()
 internalplane1_layer_context = GerberComposition()
 internalplane2_layer_context = GerberComposition()
+drills_context = DrillComposition()
 
 def setup():
     if not os.path.exists(OUTPUT_DIR):
@@ -81,6 +83,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
     add_layer(cream_bot_layer_context, pcb_file_path + ".bcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
+
+    add_layer(drills_context, pcb_file_path + ".drills.xln", board_pos_x, board_pos_y, rotate)
 
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
 
@@ -201,6 +205,8 @@ def main():
     cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bream.ger")
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane1.ger")
     internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane2.ger")
+
+    drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.drills.xln")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
 

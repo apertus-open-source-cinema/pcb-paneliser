@@ -2,8 +2,8 @@ import os
 
 import ezdxf
 import gerberex
-from gerberex import GerberComposition
 from gerberex import DrillComposition
+from gerberex import GerberComposition
 from tabulate import tabulate
 
 from frame_generator import generate_outer_frame, generate_pcb_frame, generate_pcb_bridges
@@ -29,7 +29,17 @@ cream_top_layer_context = GerberComposition()
 cream_bot_layer_context = GerberComposition()
 internalplane1_layer_context = GerberComposition()
 internalplane2_layer_context = GerberComposition()
-drills_context = DrillComposition()
+
+
+class DrillSettings:
+    format = [3, 3]
+    units = "metric"
+    zero_suppression = "trailing"
+
+
+drill_settings = DrillSettings
+drills_context = DrillComposition(settings=DrillSettings)
+
 
 def setup():
     if not os.path.exists(OUTPUT_DIR):
@@ -46,6 +56,7 @@ def add_layer(context, file_path, x, y, rotate):
     if rotate:
         layer.rotate(90)
     layer.offset(x, y)
+
     context.merge(layer)
 
 
@@ -98,6 +109,7 @@ def place_panel_label(x, y):
     label.offset(x, y)
     silkscreen_top_layer_context.merge(label)
 
+
 def place_subpanel_label(x, y):
     # silk screen label
     label = gerberex.read(INPUT_DIR + "elements/subpanel_label.gbr")
@@ -105,6 +117,7 @@ def place_subpanel_label(x, y):
     label.rotate(90)
     label.offset(x, y)
     silkscreen_top_layer_context.merge(label)
+
 
 def place_top_fiducial(x, y):
     # Solder mask fiducial
@@ -119,6 +132,7 @@ def place_top_fiducial(x, y):
     fiducial.offset(x, y)
     copper_layer_top_context.merge(fiducial)
 
+
 def place_top_origin(x, y):
     # Solder mask fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
@@ -131,6 +145,7 @@ def place_top_origin(x, y):
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_top_context.merge(fiducial)
+
 
 def place_bot_fiducial(x, y):
     # Solder mask fiducial
@@ -145,6 +160,7 @@ def place_bot_fiducial(x, y):
     fiducial.offset(x, y)
     copper_layer_bot_context.merge(fiducial)
 
+
 def place_bot_origin(x, y):
     # Solder mask fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
@@ -157,6 +173,7 @@ def place_bot_origin(x, y):
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_bot_context.merge(fiducial)
+
 
 def main():
     setup()
@@ -174,7 +191,7 @@ def main():
     area = [0, 0, panel_width, panel_height]
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
 
-    #fiducials
+    # fiducials
     place_top_fiducial(2.5, 2.5)
     place_top_fiducial(2.5, panel_height - 2.5)
     place_top_fiducial(panel_width - 2.5, panel_height - 2.5)
@@ -182,12 +199,12 @@ def main():
     place_bot_fiducial(2.5, panel_height - 2.5)
     place_bot_fiducial(panel_width - 2.5, panel_height - 2.5)
 
-    #origin
+    # origin
     place_top_origin(panel_width - 2.5, 2.5)
     place_bot_origin(panel_width - 2.5, 2.5)
 
-    #labels
-    place_subpanel_label(panel_width-1.5, 8)
+    # labels
+    place_subpanel_label(panel_width - 1.5, 8)
 
     board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')

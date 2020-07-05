@@ -18,9 +18,16 @@ board_cutout_doc = ezdxf.new('R2010')
 board_cutout_msp = board_cutout_doc.modelspace()
 
 board_outline_context = GerberComposition()
-copper_layer_context = GerberComposition()
-soldermask_layer_context = GerberComposition()
-silkscreen_layer_context = GerberComposition()
+copper_layer_top_context = GerberComposition()
+soldermask_top_layer_context = GerberComposition()
+silkscreen_top_layer_context = GerberComposition()
+copper_layer_bot_context = GerberComposition()
+soldermask_bot_layer_context = GerberComposition()
+silkscreen_bot_layer_context = GerberComposition()
+cream_top_layer_context = GerberComposition()
+cream_bot_layer_context = GerberComposition()
+internalplane1_layer_context = GerberComposition()
+internalplane2_layer_context = GerberComposition()
 
 def setup():
     if not os.path.exists(OUTPUT_DIR):
@@ -64,8 +71,16 @@ def add_pcb(pcb_name, x, y, rotate=False):
     board_outline.offset(board_pos_x, board_pos_y)
     board_outline_context.merge(board_outline)
 
-    add_layer(copper_layer_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(soldermask_layer_context, pcb_file_path + ".topsoldermask.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(copper_layer_top_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(soldermask_top_layer_context, pcb_file_path + ".topsoldermask.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(silkscreen_top_layer_context, pcb_file_path + ".topsilkscreen.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(copper_layer_bot_context, pcb_file_path + ".bottomlayer.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(soldermask_bot_layer_context, pcb_file_path + ".bottomsoldermask.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(silkscreen_bot_layer_context, pcb_file_path + ".bottomsilkscreen.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_top_layer_context, pcb_file_path + ".tcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_bot_layer_context, pcb_file_path + ".bcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
 
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
 
@@ -77,7 +92,7 @@ def place_panel_label(x, y):
     label = gerberex.read(INPUT_DIR + "elements/panel_label.gbr")
     label.to_metric()
     label.offset(x, y)
-    silkscreen_layer_context.merge(label)
+    silkscreen_top_layer_context.merge(label)
 
 def place_subpanel_label(x, y):
     # silk screen label
@@ -85,33 +100,59 @@ def place_subpanel_label(x, y):
     label.to_metric()
     label.rotate(90)
     label.offset(x, y)
-    silkscreen_layer_context.merge(label)
+    silkscreen_top_layer_context.merge(label)
 
-def place_fiducial(x, y):
+def place_top_fiducial(x, y):
     # Solder mask fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_2.30mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
-    soldermask_layer_context.merge(fiducial)
+    soldermask_top_layer_context.merge(fiducial)
 
     # Copper fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_1.20mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
-    copper_layer_context.merge(fiducial)
+    copper_layer_top_context.merge(fiducial)
 
-def place_origin(x, y):
+def place_top_origin(x, y):
     # Solder mask fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
-    soldermask_layer_context.merge(fiducial)
+    soldermask_top_layer_context.merge(fiducial)
 
     # Copper cross
     fiducial = gerberex.read(INPUT_DIR + "elements/origin_cross.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
-    copper_layer_context.merge(fiducial)
+    copper_layer_top_context.merge(fiducial)
+
+def place_bot_fiducial(x, y):
+    # Solder mask fiducial
+    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_2.30mm_dia_circle.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    soldermask_bot_layer_context.merge(fiducial)
+
+    # Copper fiducial
+    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_1.20mm_dia_circle.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    copper_layer_bot_context.merge(fiducial)
+
+def place_bot_origin(x, y):
+    # Solder mask fiducial
+    fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    soldermask_bot_layer_context.merge(fiducial)
+
+    # Copper cross
+    fiducial = gerberex.read(INPUT_DIR + "elements/origin_cross.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    copper_layer_bot_context.merge(fiducial)
 
 def main():
     setup()
@@ -130,12 +171,16 @@ def main():
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
 
     #fiducials
-    place_fiducial(2.5, 2.5)
-    place_fiducial(2.5, panel_height - 2.5)
-    place_fiducial(panel_width - 2.5, panel_height - 2.5)
+    place_top_fiducial(2.5, 2.5)
+    place_top_fiducial(2.5, panel_height - 2.5)
+    place_top_fiducial(panel_width - 2.5, panel_height - 2.5)
+    place_bot_fiducial(2.5, 2.5)
+    place_bot_fiducial(2.5, panel_height - 2.5)
+    place_bot_fiducial(panel_width - 2.5, panel_height - 2.5)
 
     #origin
-    place_origin(panel_width - 2.5, 2.5)
+    place_top_origin(panel_width - 2.5, 2.5)
+    place_bot_origin(panel_width - 2.5, 2.5)
 
     #labels
     place_subpanel_label(panel_width-1.5, 8)
@@ -144,11 +189,18 @@ def main():
     dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')
     # dxf_file.draw_mode = dxf_file.DM_FILL
     board_outline_context.merge(dxf_file)
-    board_outline_context.dump(OUTPUT_DIR + "board_outline.GKO")
+    board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.boardoutline.ger")
 
-    copper_layer_context.dump(OUTPUT_DIR + "copper_top.GTL")
-    soldermask_layer_context.dump(OUTPUT_DIR + "soldermask_top.GTS")
-    silkscreen_layer_context.dump(OUTPUT_DIR + "silkscreen_top.GTO")
+    copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
+    soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")
+    silkscreen_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsilkscreen.ger")
+    copper_layer_bot_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
+    soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
+    silkscreen_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsilkscreen.ger")
+    cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.tcream.ger")
+    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bream.ger")
+    internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane1.ger")
+    internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane2.ger")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
 

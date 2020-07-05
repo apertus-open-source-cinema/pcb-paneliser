@@ -20,7 +20,7 @@ board_cutout_msp = board_cutout_doc.modelspace()
 board_outline_context = GerberComposition()
 copper_layer_context = GerberComposition()
 soldermask_layer_context = GerberComposition()
-
+silkscreen_layer_context = GerberComposition()
 
 def setup():
     if not os.path.exists(OUTPUT_DIR):
@@ -72,6 +72,21 @@ def add_pcb(pcb_name, x, y, rotate=False):
     # generate_pcb_frame(board_cutout_msp, board_pos_x, board_pos_y, board_width, board_height, cutout_width)
 
 
+def place_panel_label(x, y):
+    # silk screen label
+    label = gerberex.read(INPUT_DIR + "elements/panel_label.gbr")
+    label.to_metric()
+    label.offset(x, y)
+    silkscreen_layer_context.merge(label)
+
+def place_subpanel_label(x, y):
+    # silk screen label
+    label = gerberex.read(INPUT_DIR + "elements/subpanel_label.gbr")
+    label.to_metric()
+    label.rotate(90)
+    label.offset(x, y)
+    silkscreen_layer_context.merge(label)
+
 def place_fiducial(x, y):
     # Solder mask fiducial
     fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_2.30mm_dia_circle.gbr")
@@ -85,6 +100,18 @@ def place_fiducial(x, y):
     fiducial.offset(x, y)
     copper_layer_context.merge(fiducial)
 
+def place_origin(x, y):
+    # Solder mask fiducial
+    fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    soldermask_layer_context.merge(fiducial)
+
+    # Copper cross
+    fiducial = gerberex.read(INPUT_DIR + "elements/origin_cross.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    copper_layer_context.merge(fiducial)
 
 def main():
     setup()
@@ -102,8 +129,16 @@ def main():
     area = [0, 0, panel_width, panel_height]
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
 
+    #fiducials
     place_fiducial(2.5, 2.5)
-    place_fiducial(panel_width - 2.5, 2.5)
+    place_fiducial(2.5, panel_height - 2.5)
+    place_fiducial(panel_width - 2.5, panel_height - 2.5)
+
+    #origin
+    place_origin(panel_width - 2.5, 2.5)
+
+    #labels
+    place_subpanel_label(panel_width-1.5, 8)
 
     board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')
@@ -112,7 +147,8 @@ def main():
     board_outline_context.dump(OUTPUT_DIR + "board_outline.GKO")
 
     copper_layer_context.dump(OUTPUT_DIR + "copper_top.GTL")
-    soldermask_layer_context.dump(OUTPUT_DIR + "soldermask_top.GSO")
+    soldermask_layer_context.dump(OUTPUT_DIR + "soldermask_top.GTS")
+    silkscreen_layer_context.dump(OUTPUT_DIR + "silkscreen_top.GTO")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
 

@@ -18,26 +18,31 @@ frame_width = 5  # mm
 board_cutout_doc = ezdxf.new('R2010')
 board_cutout_msp = board_cutout_doc.modelspace()
 
-board_outline_context = GerberComposition()
-copper_layer_top_context = GerberComposition()
-soldermask_top_layer_context = GerberComposition()
-silkscreen_top_layer_context = GerberComposition()
-copper_layer_bot_context = GerberComposition()
-soldermask_bot_layer_context = GerberComposition()
-silkscreen_bot_layer_context = GerberComposition()
-cream_top_layer_context = GerberComposition()
-cream_bot_layer_context = GerberComposition()
-internalplane1_layer_context = GerberComposition()
-internalplane2_layer_context = GerberComposition()
+
+class GerberSettings:
+    format = [3, 6]
+    units = "metric"
+    zero_suppression = "trailing"
 
 
 class DrillSettings:
     format = [3, 3]
     units = "metric"
-    zero_suppression = "trailing"
+    zero_suppression = "leading"
 
 
-drill_settings = DrillSettings
+board_outline_context = GerberComposition(settings=GerberSettings)
+copper_layer_top_context = GerberComposition(settings=GerberSettings)
+soldermask_top_layer_context = GerberComposition(settings=GerberSettings)
+silkscreen_top_layer_context = GerberComposition(settings=GerberSettings)
+copper_layer_bot_context = GerberComposition(settings=GerberSettings)
+soldermask_bot_layer_context = GerberComposition(settings=GerberSettings)
+silkscreen_bot_layer_context = GerberComposition(settings=GerberSettings)
+cream_top_layer_context = GerberComposition(settings=GerberSettings)
+cream_bot_layer_context = GerberComposition(settings=GerberSettings)
+internalplane1_layer_context = GerberComposition(settings=GerberSettings)
+internalplane2_layer_context = GerberComposition(settings=GerberSettings)
+
 drills_context = DrillComposition(settings=DrillSettings)
 
 

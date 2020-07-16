@@ -119,11 +119,26 @@ def main():
     setup()
 
     panel_width = 550
-    panel_height = 650
+    panel_height = 580
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
+    #row 1
     add_pcb("axiom_beta_mixed_panel", 0, 0)
-    add_pcb("axiom_beta_mixed_panel", 150, 0)
+    add_pcb("axiom_beta_mixed_panel", 134.3, 0)
+    add_pcb("axiom_beta_mixed_panel", 268.6, 0)
+    add_pcb("axiom_beta_mixed_panel", 402.9, 0)
+
+    #row 2
+    add_pcb("axiom_beta_mixed_panel", 0, 188.91)
+    add_pcb("axiom_beta_mixed_panel", 134.3, 188.91)
+    add_pcb("axiom_beta_mixed_panel", 268.6, 188.91)
+    add_pcb("axiom_beta_mixed_panel", 402.9, 188.91)
+
+    #row 3
+    add_pcb("axiom_beta_mixed_panel", 0, 377.82)
+    add_pcb("axiom_beta_mixed_panel", 134.3, 377.82)
+    add_pcb("axiom_beta_mixed_panel", 268.6, 377.82)
+    add_pcb("axiom_beta_mixed_panel", 402.9, 377.82)
 
     # area = [0, 0, panel_width, panel_height]
     # generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)

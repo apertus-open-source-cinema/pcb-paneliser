@@ -144,7 +144,7 @@ def main():
     # generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
 
     # label
-    place_panel_label(panel_width - 1.5, 8)
+    place_panel_label(3, 1.5)
 
     board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')

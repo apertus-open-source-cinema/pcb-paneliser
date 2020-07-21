@@ -54,6 +54,20 @@ def setup():
 pcb_info = []
 
 
+def remove_gerber_outline(board_outline):
+    delete_start = -1
+    delete_end = -1
+    data = board_outline.main_statements
+    for drawing in board_outline.main_statements:
+        if drawing.type == "APERTURE" and drawing.d == 10:
+            delete_start = data.index(drawing)
+        elif drawing.type == "APERTURE" and drawing.d != 10 and delete_start != -1:
+            delete_end = data.index(drawing)
+            break
+
+    del data[delete_start:delete_end]
+
+
 def add_layer(context, file_path, x, y, rotate):
     layer = gerberex.read(file_path)
     layer.to_metric()
@@ -85,6 +99,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
 
     board_pos_x -= board_offset_x
     board_pos_y -= board_offset_y
+
+    remove_gerber_outline(board_outline)
 
     board_outline.offset(board_pos_x, board_pos_y)
     board_outline_context.merge(board_outline)
@@ -213,7 +229,6 @@ def main():
 
     board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')
-    # dxf_file.draw_mode = dxf_file.DM_FILL
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.boardoutline.ger")
 

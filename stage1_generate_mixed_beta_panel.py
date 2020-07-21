@@ -1,4 +1,5 @@
 import os
+import time
 
 import ezdxf
 import gerberex
@@ -111,8 +112,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
     add_layer(copper_layer_bot_context, pcb_file_path + ".bottomlayer.ger", board_pos_x, board_pos_y, rotate)
     add_layer(soldermask_bot_layer_context, pcb_file_path + ".bottomsoldermask.ger", board_pos_x, board_pos_y, rotate)
     add_layer(silkscreen_bot_layer_context, pcb_file_path + ".bottomsilkscreen.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_top_layer_context, pcb_file_path + ".tcream.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_bot_layer_context, pcb_file_path + ".bcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_top_layer_context, pcb_file_path + ".topcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_bot_layer_context, pcb_file_path + ".bottomcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
 
@@ -197,17 +198,19 @@ def place_bot_origin(x, y):
 
 
 def main():
+    start_time = time.time()
+
     setup()
 
     panel_width = frame_width * 2 + cutout_width * 3 + 57.15 * 2
     panel_height = frame_width * 2 + cutout_width * 3 + 57.15 + 111.76;
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
-    add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.3", 0, 0)
-    add_pcb("axiom_beta_interface_dummy_v0.13_r1.1", 57.15 + cutout_width,
+    add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.4c", 0, 0)
+    add_pcb("axiom_beta_interface_dummy_v0.13_r1.2", 57.15 + cutout_width,
             0)
-    add_pcb("axiom_beta_main_board_v0.36_r1.2", 0, 57.15 + cutout_width, True)
-    add_pcb("axiom_beta_power_board_v0.30", 57.15 + cutout_width, 57.15 + cutout_width, True)
+    add_pcb("axiom_beta_main_board_v0.37", 0, 57.15 + cutout_width, True)
+    add_pcb("axiom_beta_power_board_v0.37", 57.15 + cutout_width, 57.15 + cutout_width, True)
 
     area = [0, 0, panel_width, panel_height]
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
@@ -238,14 +241,18 @@ def main():
     copper_layer_bot_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
     soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
     silkscreen_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsilkscreen.ger")
-    cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.tcream.ger")
-    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bcream.ger")
+    cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
+    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane1.ger")
     internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.internalplane2.ger")
 
     drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.drills.xln")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("\r\nElapsed time: %.2f" % elapsed_time, "seconds")
 
 
 if __name__ == "__main__":

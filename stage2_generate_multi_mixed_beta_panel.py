@@ -1,7 +1,6 @@
-import os
-
 import ezdxf
 import gerberex
+import os
 from gerberex import DrillComposition
 from gerberex import GerberComposition
 from tabulate import tabulate
@@ -89,16 +88,16 @@ def add_pcb(pcb_name, x, y, rotate=False):
     board_outline.offset(board_pos_x, board_pos_y)
     board_outline_context.merge(board_outline)
 
-    add_layer(copper_layer_top_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
+    '''add_layer(copper_layer_top_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
     add_layer(soldermask_top_layer_context, pcb_file_path + ".topsoldermask.ger", board_pos_x, board_pos_y, rotate)
     add_layer(silkscreen_top_layer_context, pcb_file_path + ".topsilkscreen.ger", board_pos_x, board_pos_y, rotate)
     add_layer(copper_layer_bot_context, pcb_file_path + ".bottomlayer.ger", board_pos_x, board_pos_y, rotate)
     add_layer(soldermask_bot_layer_context, pcb_file_path + ".bottomsoldermask.ger", board_pos_x, board_pos_y, rotate)
     add_layer(silkscreen_bot_layer_context, pcb_file_path + ".bottomsilkscreen.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_top_layer_context, pcb_file_path + ".tcream.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_bot_layer_context, pcb_file_path + ".bcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_top_layer_context, pcb_file_path + ".topcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_bot_layer_context, pcb_file_path + ".bottomcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)'''
 
     add_layer(drills_context, pcb_file_path + ".drills.xln", board_pos_x, board_pos_y, rotate)
 
@@ -122,23 +121,23 @@ def main():
     panel_height = 580
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
-    #row 1
-    add_pcb("axiom_beta_mixed_panel", 0, 0)
-    add_pcb("axiom_beta_mixed_panel", 134.3, 0)
-    add_pcb("axiom_beta_mixed_panel", 268.6, 0)
-    add_pcb("axiom_beta_mixed_panel", 402.9, 0)
+    # row 1
+    add_pcb("axiom_beta_mixed_panel", 0 + 5, 0 + 5)
+    add_pcb("axiom_beta_mixed_panel", 134.3 + 5, 0 + 5)
+    add_pcb("axiom_beta_mixed_panel", 268.6 + 5, 0 + 5)
+    add_pcb("axiom_beta_mixed_panel", 402.9 + 5, 0 + 5)
 
-    #row 2
-    add_pcb("axiom_beta_mixed_panel", 0, 188.91)
-    add_pcb("axiom_beta_mixed_panel", 134.3, 188.91)
-    add_pcb("axiom_beta_mixed_panel", 268.6, 188.91)
-    add_pcb("axiom_beta_mixed_panel", 402.9, 188.91)
+    # row 2
+    add_pcb("axiom_beta_mixed_panel", 0 + 5, 188.91 + 5)
+    add_pcb("axiom_beta_mixed_panel", 134.3 + 5, 188.91 + 5)
+    add_pcb("axiom_beta_mixed_panel", 268.6 + 5, 188.91 + 5)
+    add_pcb("axiom_beta_mixed_panel", 402.9 + 5, 188.91 + 5)
 
-    #row 3
-    add_pcb("axiom_beta_mixed_panel", 0, 377.82)
-    add_pcb("axiom_beta_mixed_panel", 134.3, 377.82)
-    add_pcb("axiom_beta_mixed_panel", 268.6, 377.82)
-    add_pcb("axiom_beta_mixed_panel", 402.9, 377.82)
+    # row 3
+    add_pcb("axiom_beta_mixed_panel", 0 + 5, 377.82 + 5)
+    add_pcb("axiom_beta_mixed_panel", 134.3 + 5, 377.82 + 5)
+    add_pcb("axiom_beta_mixed_panel", 268.6 + 5, 377.82 + 5)
+    add_pcb("axiom_beta_mixed_panel", 402.9 + 5, 377.82 + 5)
 
     # area = [0, 0, panel_width, panel_height]
     # generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
@@ -152,16 +151,16 @@ def main():
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.boardoutline.ger")
 
-    copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.toplayer.ger")
+    '''copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.toplayer.ger")
     soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topsoldermask.ger")
     silkscreen_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topsilkscreen.ger")
     copper_layer_bot_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomlayer.ger")
     soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomsoldermask.ger")
     silkscreen_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomsilkscreen.ger")
-    cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.tcream.ger")
-    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bream.ger")
+    cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topcream.ger")
+    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomcream.ger")
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane1.ger")
-    internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")
+    internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")'''
 
     drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.drills.xln")
 

@@ -95,8 +95,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
     add_layer(copper_layer_bot_context, pcb_file_path + ".bottomlayer.ger", board_pos_x, board_pos_y, rotate)
     add_layer(soldermask_bot_layer_context, pcb_file_path + ".bottomsoldermask.ger", board_pos_x, board_pos_y, rotate)
     add_layer(silkscreen_bot_layer_context, pcb_file_path + ".bottomsilkscreen.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_top_layer_context, pcb_file_path + ".tcream.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(cream_bot_layer_context, pcb_file_path + ".bcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_top_layer_context, pcb_file_path + ".topcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(cream_bot_layer_context, pcb_file_path + ".bottomcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
 

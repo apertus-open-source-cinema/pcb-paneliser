@@ -19,6 +19,9 @@ frame_width = 5  # mm
 board_cutout_doc = ezdxf.new('R2010')
 board_cutout_msp = board_cutout_doc.modelspace()
 
+drill_doc = ezdxf.new('R2010')
+drill_msp = drill_doc.modelspace()
+
 
 class GerberSettings:
     format = [3, 6]
@@ -149,7 +152,8 @@ def main():
     area = [0, 0, panel_width, panel_height]
     area[2] -= 0.3
     area[3] -= 0.77
-    generate_subpanel_bridges(board_cutout_msp, area, cutout_width, 12, 9)
+    generate_subpanel_bridges(board_cutout_msp, drill_msp, area, cutout_width, 12, 9)
+    drill_doc.saveas(OUTPUT_DIR + 'mouse_bites.dxf')
 
     # label
     place_panel_label(3, 1.5)
@@ -171,6 +175,12 @@ def main():
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane1.ger")
     internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")
 
+    dxf_file = gerberex.read(OUTPUT_DIR + 'mouse_bites.dxf')
+    dxf_file.draw_mode = dxf_file.DM_MOUSE_BITES
+    dxf_file.to_metric()
+    dxf_file.width = 0.5
+    dxf_file.pitch = 1
+    drills_context.merge(dxf_file)
     drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.drills.xln")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))

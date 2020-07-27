@@ -70,10 +70,12 @@ def generate_pcb_bridges(dxf_modelspace, area, cutout_width, count_x, count_y):
         dxf_modelspace.add_lwpolyline(element.exterior.coords)
 
 
-def generate_subpanel_bridges(dxf_modelspace, area, cutout_width, count_x, count_y):
-    __generate_bridges(dxf_modelspace, area, count_x, count_y)
+def generate_subpanel_bridges(dxf_outline_space, dxf_drill_space, area, cutout_width, count_x, count_y):
+    __generate_bridges(dxf_outline_space, area, count_x, count_y)
 
     frame_lines = MultiLineString(cutout_lines)
+
+    generate_mouse_bites(area, dxf_drill_space, frame_lines)
 
     for splitter in splitter_rectangles:
         frame_lines = frame_lines.difference(splitter)
@@ -104,13 +106,9 @@ def generate_subpanel_bridges(dxf_modelspace, area, cutout_width, count_x, count
     inset_lines = MultiLineString(inset_lines)
     dilated_insets = inset_lines.buffer(cutout_width / 3, join_style=1)
 
-    # Remove outward bridges
-    # TODO: Needs better solution, this one is a quick hack
-    outer_rectangle = geometry.box(area[0], area[1], area[2], 5)
-    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[1], 5, area[3]))
-    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[3] - 5, area[2], area[3]))
-    outer_rectangle = outer_rectangle.union(geometry.box(area[2] - 5, area[1], area[2], area[3]))
-    dilated_insets = dilated_insets.difference(outer_rectangle)
+    # Remove outward bridges TODO: Needs better solution, this one is a quick hack TODO: Check if interior exterior
+    #  of polygon would work: https://gis.stackexchange.com/questions/341604/creating-shapely-polygons-with-holes
+    # dilated_insets = clean_outer_perimeter(area, dilated_insets)
 
     # Merge cutouts and insets
     dilated = frame_lines.buffer(cutout_width / 2, cap_style=2, join_style=2)
@@ -118,4 +116,34 @@ def generate_subpanel_bridges(dxf_modelspace, area, cutout_width, count_x, count
     # Round the corners of insets
     dilated = dilated.buffer(0.8, join_style=1).buffer(-0.8, join_style=1)
     for element in dilated:
-        dxf_modelspace.add_lwpolyline(element.exterior.coords)
+        dxf_outline_space.add_lwpolyline(element.exterior.coords)
+
+
+def generate_mouse_bites(area, dxf_drill_space, frame_lines):
+    bridge_box = geometry.box(area[0], area[1], area[2], area[3])
+    for splitter in splitter_rectangles:
+        bridge_box = bridge_box.difference(splitter)
+
+    bridge_box = bridge_box.buffer(1)
+
+    bridge_lines = frame_lines
+    for splitter in bridge_box:
+        bridge_lines = bridge_lines.difference(splitter)
+
+    for element in bridge_lines:
+        # if type(element) is LineString:
+        element_right = element.parallel_offset(2, 'right')
+        dxf_drill_space.add_lwpolyline(element_right.coords)
+        element_left = element.parallel_offset(2, 'left')
+        dxf_drill_space.add_lwpolyline(element_left.coords)
+
+    return frame_lines
+
+
+def clean_outer_perimeter(area, dilated_insets):
+    outer_rectangle = geometry.box(area[0], area[1], area[2], 5)
+    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[1], 5, area[3]))
+    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[3] - 5, area[2], area[3]))
+    outer_rectangle = outer_rectangle.union(geometry.box(area[2] - 5, area[1], area[2], area[3]))
+    dilated_insets = dilated_insets.difference(outer_rectangle)
+    return dilated_insets

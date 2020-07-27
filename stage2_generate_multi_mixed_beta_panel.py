@@ -1,11 +1,13 @@
+import os
+import time
+
 import ezdxf
 import gerberex
-import os
 from gerberex import DrillComposition
 from gerberex import GerberComposition
 from tabulate import tabulate
 
-from frame_generator import generate_outer_frame, generate_pcb_frame
+from frame_generator import generate_pcb_frame, generate_outer_frame, generate_subpanel_bridges
 
 TEMPLATE_DIR = "templates/"
 INPUT_DIR = "output_stage1/"
@@ -80,7 +82,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
     board_height = board_outline.size[1]
     board_pos_x = x + frame_width + cutout_width
     board_pos_y = y + frame_width + cutout_width
-    generate_pcb_frame(board_cutout_msp, board_pos_x, board_pos_y, board_width, board_height, cutout_width)
+    generate_pcb_frame(board_cutout_msp, board_pos_x - frame_width, board_pos_y - frame_width,
+                       board_width + frame_width * 2, board_height + frame_width * 2, cutout_width)
 
     board_pos_x -= board_offset_x
     board_pos_y -= board_offset_y
@@ -88,7 +91,7 @@ def add_pcb(pcb_name, x, y, rotate=False):
     board_outline.offset(board_pos_x, board_pos_y)
     board_outline_context.merge(board_outline)
 
-    '''add_layer(copper_layer_top_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(copper_layer_top_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
     add_layer(soldermask_top_layer_context, pcb_file_path + ".topsoldermask.ger", board_pos_x, board_pos_y, rotate)
     add_layer(silkscreen_top_layer_context, pcb_file_path + ".topsilkscreen.ger", board_pos_x, board_pos_y, rotate)
     add_layer(copper_layer_bot_context, pcb_file_path + ".bottomlayer.ger", board_pos_x, board_pos_y, rotate)
@@ -97,7 +100,7 @@ def add_pcb(pcb_name, x, y, rotate=False):
     add_layer(cream_top_layer_context, pcb_file_path + ".topcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(cream_bot_layer_context, pcb_file_path + ".bottomcream.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
-    add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)'''
+    add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
 
     add_layer(drills_context, pcb_file_path + ".drills.xln", board_pos_x, board_pos_y, rotate)
 
@@ -115,6 +118,8 @@ def place_panel_label(x, y):
 
 
 def main():
+    start_time = time.time()
+
     setup()
 
     panel_width = 550
@@ -139,8 +144,12 @@ def main():
     add_pcb("axiom_beta_mixed_panel", 268.6 + 5, 377.82 + 5)
     add_pcb("axiom_beta_mixed_panel", 402.9 + 5, 377.82 + 5)
 
-    # area = [0, 0, panel_width, panel_height]
-    # generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
+    # TODO: Manual adjustment, to prevent skewed outer cutouts, needs investigation where it comes from and how to
+    #  avoid, probably has to do with panel size
+    area = [0, 0, panel_width, panel_height]
+    area[2] -= 0.3
+    area[3] -= 0.77
+    generate_subpanel_bridges(board_cutout_msp, area, cutout_width, 12, 9)
 
     # label
     place_panel_label(3, 1.5)
@@ -151,7 +160,7 @@ def main():
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.boardoutline.ger")
 
-    '''copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.toplayer.ger")
+    copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.toplayer.ger")
     soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topsoldermask.ger")
     silkscreen_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topsilkscreen.ger")
     copper_layer_bot_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomlayer.ger")
@@ -160,11 +169,15 @@ def main():
     cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.topcream.ger")
     cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.bottomcream.ger")
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane1.ger")
-    internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")'''
+    internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")
 
     drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.drills.xln")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("\r\nElapsed time: %.2f" % elapsed_time, "seconds")
 
 
 if __name__ == "__main__":

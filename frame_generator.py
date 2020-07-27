@@ -1,4 +1,5 @@
-from shapely.geometry import MultiLineString, box
+from shapely import geometry, ops
+from shapely.geometry import MultiLineString, box, LineString
 
 from dxf_helper import create_dxf_rectangle
 
@@ -65,5 +66,56 @@ def generate_pcb_bridges(dxf_modelspace, area, cutout_width, count_x, count_y):
 
     dilated = frame_lines.buffer(cutout_width / 2)
 
+    for element in dilated:
+        dxf_modelspace.add_lwpolyline(element.exterior.coords)
+
+
+def generate_subpanel_bridges(dxf_modelspace, area, cutout_width, count_x, count_y):
+    __generate_bridges(dxf_modelspace, area, count_x, count_y)
+
+    frame_lines = MultiLineString(cutout_lines)
+
+    for splitter in splitter_rectangles:
+        frame_lines = frame_lines.difference(splitter)
+
+    # Merge all lines, so the endpoints are not where lines cross
+    frame_lines = ops.linemerge(frame_lines)
+
+    inset_lines = []
+    for frame_line in frame_lines:
+        line = frame_line.parallel_offset(2, 'left')
+
+        # line2 = frame_line.parallel_offset(2, 'right')
+        if frame_line.boundary and line.boundary:
+            inset_line = LineString([frame_line.boundary[0], line.boundary[0]])
+            inset_lines.append(inset_line)
+            inset_line = LineString([frame_line.boundary[1], line.boundary[1]])
+            inset_lines.append(inset_line)
+
+        line = frame_line.parallel_offset(2, 'right')
+        if frame_line.boundary and line.boundary:
+            inset_line = LineString([frame_line.boundary[0], line.boundary[1]])
+            inset_lines.append(inset_line)
+            inset_line = LineString([frame_line.boundary[1], line.boundary[0]])
+            inset_lines.append(inset_line)
+
+        # frame_lines = frame_lines.union(inset_line)
+
+    inset_lines = MultiLineString(inset_lines)
+    dilated_insets = inset_lines.buffer(cutout_width / 3, join_style=1)
+
+    # Remove outward bridges
+    # TODO: Needs better solution, this one is a quick hack
+    outer_rectangle = geometry.box(area[0], area[1], area[2], 5)
+    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[1], 5, area[3]))
+    outer_rectangle = outer_rectangle.union(geometry.box(area[0], area[3] - 5, area[2], area[3]))
+    outer_rectangle = outer_rectangle.union(geometry.box(area[2] - 5, area[1], area[2], area[3]))
+    dilated_insets = dilated_insets.difference(outer_rectangle)
+
+    # Merge cutouts and insets
+    dilated = frame_lines.buffer(cutout_width / 2, cap_style=2, join_style=2)
+    dilated = dilated.union(dilated_insets)
+    # Round the corners of insets
+    dilated = dilated.buffer(0.8, join_style=1).buffer(-0.8, join_style=1)
     for element in dilated:
         dxf_modelspace.add_lwpolyline(element.exterior.coords)

@@ -21,13 +21,13 @@ board_cutout_msp = board_cutout_doc.modelspace()
 
 
 class GerberSettings:
-    format = [3, 6]
+    format = [3, 5]
     units = "metric"
-    zero_suppression = "trailing"
+    zero_suppression = "leading"
 
 
 class DrillSettings:
-    format = [3, 3]
+    format = [3, 4]
     units = "metric"
     zero_suppression = "leading"
 
@@ -73,8 +73,8 @@ def add_layer(context, file_path, x, y, rotate):
     layer = gerberex.read(file_path)
     layer.to_metric()
 
-    if rotate:
-        layer.rotate(90)
+    # if rotate:
+    #    layer.rotate(90)
     layer.offset(x, y)
 
     context.merge(layer)
@@ -85,8 +85,8 @@ def add_pcb(pcb_name, x, y, rotate=False):
     board_outline_file_path = pcb_file_path + '.boardoutline.ger'
     board_outline = gerberex.read(board_outline_file_path)
     board_outline.to_metric()
-    if rotate:
-        board_outline.rotate(90)
+    # if rotate:
+    #    board_outline.rotate(90)
 
     # Reset the board offset, set the bottom-left point of the board to 0, 0
     board_offset_x = board_outline.bounds[0][0]
@@ -208,10 +208,9 @@ def main():
     # generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
     add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.4c", 0, 0)
-    add_pcb("axiom_beta_interface_dummy_v0.13_r1.2", 57.15 + cutout_width,
-            0)
-    add_pcb("axiom_beta_main_board_v0.37", 0, 57.15 + cutout_width, True)
-    add_pcb("axiom_beta_power_board_v0.37", 57.15 + cutout_width, 57.15 + cutout_width, True)
+    add_pcb("axiom_beta_interface_dummy_v0.13_r1.2", 57.15 + cutout_width, 0)
+    add_pcb("axiom_beta_main_board_v0.37", 0, 57.15 + cutout_width)
+    add_pcb("axiom_beta_power_board_v0.37", 57.15 + cutout_width, 57.15 + cutout_width)
 
     area = [0, 0, panel_width, panel_height]
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
@@ -249,7 +248,8 @@ def main():
 
     drills_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.drills.xln")
 
-    print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'], tablefmt='orgtbl'))
+    print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'],
+                   tablefmt='orgtbl'))
 
     end_time = time.time()
     elapsed_time = end_time - start_time

@@ -24,14 +24,16 @@ drill_msp = drill_doc.modelspace()
 
 
 class GerberSettings:
-    format = [3, 5]
+    format = [3, 3]
     units = "metric"
     zero_suppression = "leading"
 
 
 class DrillSettings:
-    format = [3, 4]
+    format = [3, 3]
     units = "metric"
+    zeros = "trailing"
+    notation = "absolute"
     zero_suppression = "leading"
 
 

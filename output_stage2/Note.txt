@@ -1,12 +1,13 @@
 Dimensions: metric 
-Data Format: RS274X
 
-Gerber Layer Digits before Decimal: 3
-Gerber Layer Digits after Decimal: 3
+Data Format: RS274X
 
 Omit Zeros: Leading
 
 Character Encoding: ASCII
+
+Gerber Layer Digits before Decimal: 3
+Gerber Layer Digits after Decimal: 3
 
 Drill Layer Digits before Decimal: 3
 Drill Layer Digits after Decimal: 3

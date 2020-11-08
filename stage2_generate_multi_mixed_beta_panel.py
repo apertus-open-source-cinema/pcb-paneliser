@@ -12,6 +12,7 @@ from frame_generator import generate_pcb_frame, generate_outer_frame, generate_s
 TEMPLATE_DIR = "templates/"
 INPUT_DIR = "output_stage1/"
 OUTPUT_DIR = "output_stage2/"
+TEMP_DIR = "temp/"
 
 cutout_width = 2.5  # mm
 frame_width = 5  # mm
@@ -55,6 +56,8 @@ drills_context = DrillComposition(settings=DrillSettings)
 def setup():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
+    if not os.path.exists(TEMP_DIR):
+        os.makedirs(TEMP_DIR)
 
 
 pcb_info = []
@@ -155,13 +158,13 @@ def main():
     area[2] -= 0.3
     area[3] -= 0.77
     generate_subpanel_bridges(board_cutout_msp, drill_msp, area, cutout_width, 12, 9)
-    drill_doc.saveas(OUTPUT_DIR + 'mouse_bites.dxf')
+    drill_doc.saveas(TEMP_DIR + 'mouse_bites.dxf')
 
     # label
     place_panel_label(3, 1.5)
 
-    board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
-    dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')
+    board_cutout_doc.saveas(TEMP_DIR + 'board_outline.dxf')
+    dxf_file = gerberex.read(TEMP_DIR + 'board_outline.dxf')
     # dxf_file.draw_mode = dxf_file.DM_FILL
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.boardoutline.ger")
@@ -177,7 +180,7 @@ def main():
     internalplane1_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane1.ger")
     internalplane2_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_multi_panel.internalplane2.ger")
 
-    dxf_file = gerberex.read(OUTPUT_DIR + 'mouse_bites.dxf')
+    dxf_file = gerberex.read(TEMP_DIR + 'mouse_bites.dxf')
     dxf_file.draw_mode = dxf_file.DM_MOUSE_BITES
     dxf_file.to_metric()
     dxf_file.width = 0.5

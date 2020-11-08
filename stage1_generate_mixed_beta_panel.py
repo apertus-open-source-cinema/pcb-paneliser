@@ -7,11 +7,12 @@ from gerberex import DrillComposition
 from gerberex import GerberComposition
 from tabulate import tabulate
 
-from frame_generator import generate_pcb_frame, generate_pcb_bridges
+from frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_outer_frame
 
 TEMPLATE_DIR = "templates/"
 INPUT_DIR = "input/"
 OUTPUT_DIR = "output_stage1/"
+TEMP_DIR = "temp/"
 
 cutout_width = 2.5  # mm
 frame_width = 5  # mm
@@ -52,6 +53,8 @@ drills_context = DrillComposition(settings=DrillSettings)
 def setup():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
+    if not os.path.exists(TEMP_DIR):
+        os.makedirs(TEMP_DIR)
 
 
 pcb_info = []
@@ -232,8 +235,8 @@ def main():
     # labels
     place_subpanel_label(panel_width - 1.5, 8)
 
-    board_cutout_doc.saveas(OUTPUT_DIR + 'board_outline.dxf')
-    dxf_file = gerberex.read(OUTPUT_DIR + 'board_outline.dxf')
+    board_cutout_doc.saveas(TEMP_DIR + 'board_outline.dxf')
+    dxf_file = gerberex.read(TEMP_DIR + 'board_outline.dxf')
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.boardoutline.ger")
 

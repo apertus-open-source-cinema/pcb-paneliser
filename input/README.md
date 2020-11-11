@@ -9,3 +9,4 @@ This guide should cover the process to go from eagle _*.brd_ file to the catalog
 * in Eagle go to **File -> CAM Processor**, then in the newly opened window **File -> Open -> Job**
 * Choose the **oshpark-4layer.cam** file from this directory
 * Click **Process Job** - the files will be written to the same directory where the _*.brd_ file resides
+  * Confirm the warning about large data with **Yes to all**

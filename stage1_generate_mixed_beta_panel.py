@@ -212,10 +212,10 @@ def main():
     # Commented out to disable outer frame for mixed panel (stage 2)
     # generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
-    add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.4c", 0, 0)
-    add_pcb("axiom_beta_interface_dummy_v0.13_r1.2", 57.15 + cutout_width, 0)
-    add_pcb("axiom_beta_main_board_v0.37", 0, 57.15 + cutout_width)
-    add_pcb("axiom_beta_power_board_v0.37", 57.15 + cutout_width, 57.15 + cutout_width)
+    add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.5c", 0, 0)
+    add_pcb("axiom_beta_interface_dummy_v0.13_r1.3", 57.15 + cutout_width, 0)
+    add_pcb("axiom_beta_main_board_v0.37_r1.1", 0, 57.15 + cutout_width)
+    add_pcb("axiom_beta_power_board_v0.37_r1.1", 57.15 + cutout_width, 57.15 + cutout_width)
 
     area = [0, 0, panel_width, panel_height]
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)

@@ -9,8 +9,8 @@ from tabulate import tabulate
 
 from frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_outer_frame
 
-TEMPLATE_DIR = "templates/"
-INPUT_DIR = "input/"
+ELEMENTS_DIR = "input/elements/"
+INPUT_DIR = "input/base_variant/"
 OUTPUT_DIR = "output_stage1/"
 TEMP_DIR = "temp/"
 
@@ -131,7 +131,7 @@ def add_pcb(pcb_name, x, y, rotate=False):
 
 def place_panel_label(x, y):
     # silk screen label
-    label = gerberex.read(INPUT_DIR + "elements/panel_label.gbr")
+    label = gerberex.read(ELEMENTS_DIR + "panel_label.gbr")
     label.to_metric()
     label.offset(x, y)
     silkscreen_top_layer_context.merge(label)
@@ -139,7 +139,7 @@ def place_panel_label(x, y):
 
 def place_subpanel_label(x, y):
     # silk screen label
-    label = gerberex.read(INPUT_DIR + "elements/subpanel_label.gbr")
+    label = gerberex.read(ELEMENTS_DIR + "subpanel_label.gbr")
     label.to_metric()
     label.rotate(90)
     label.offset(x, y)
@@ -148,13 +148,13 @@ def place_subpanel_label(x, y):
 
 def place_top_fiducial(x, y):
     # Solder mask fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_2.30mm_dia_circle.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_2.30mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     soldermask_top_layer_context.merge(fiducial)
 
     # Copper fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_1.20mm_dia_circle.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_1.20mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_top_context.merge(fiducial)
@@ -162,13 +162,13 @@ def place_top_fiducial(x, y):
 
 def place_top_origin(x, y):
     # Solder mask fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "origin_1.12mm_dia_circle_soldermask.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     soldermask_top_layer_context.merge(fiducial)
 
     # Copper cross
-    fiducial = gerberex.read(INPUT_DIR + "elements/origin_cross.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "origin_cross.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_top_context.merge(fiducial)
@@ -176,13 +176,13 @@ def place_top_origin(x, y):
 
 def place_bot_fiducial(x, y):
     # Solder mask fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_2.30mm_dia_circle.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_2.30mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     soldermask_bot_layer_context.merge(fiducial)
 
     # Copper fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/fiducial_1.20mm_dia_circle.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_1.20mm_dia_circle.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_bot_context.merge(fiducial)
@@ -190,13 +190,13 @@ def place_bot_fiducial(x, y):
 
 def place_bot_origin(x, y):
     # Solder mask fiducial
-    fiducial = gerberex.read(INPUT_DIR + "elements/origin_1.12mm_dia_circle_soldermask.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "origin_1.12mm_dia_circle_soldermask.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     soldermask_bot_layer_context.merge(fiducial)
 
     # Copper cross
-    fiducial = gerberex.read(INPUT_DIR + "elements/origin_cross.gbr")
+    fiducial = gerberex.read(ELEMENTS_DIR + "origin_cross.gbr")
     fiducial.to_metric()
     fiducial.offset(x, y)
     copper_layer_bot_context.merge(fiducial)

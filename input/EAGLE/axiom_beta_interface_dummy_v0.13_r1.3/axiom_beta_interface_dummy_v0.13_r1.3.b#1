@@ -1393,7 +1393,7 @@ By Sylvain Munaut</description>
 </attributes>
 <variantdefs>
 <variantdef name="Beta"/>
-<variantdef name="Tele"/>
+<variantdef name="Tele" current="yes"/>
 </variantdefs>
 <classes>
 <class number="0" name="default" width="0.1524" drill="0.2032">
@@ -1588,7 +1588,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="26.797" y="12.113" size="0.8128" layer="25" font="vector" ratio="12" align="center"/>
 <attribute name="VALUE" x="23.114" y="10.843" size="1.27" layer="27" align="center-left"/>
 </element>
-<element name="R2" library="generic-rcl" package="0402-B" value="1k" x="25.019" y="13.002" smashed="yes" rot="R180">
+<element name="R2" library="generic-rcl" package="0402-B" value="0R" x="25.019" y="13.002" smashed="yes" rot="R180">
 <attribute name="NAME" x="25.019" y="14.018" size="0.8128" layer="25" font="vector" ratio="12" rot="R180" align="center"/>
 <attribute name="VALUE" x="26.924" y="14.272" size="1.27" layer="27" rot="R180" align="center-left"/>
 </element>
@@ -1649,14 +1649,14 @@ Please make sure your boards conform to these design rules.</description>
 <element name="LOGO1" library="ohw-logo" package="OSHW_FILLX100_NOTEXT" value="OSHW_LOGO_FILLX0100-NT" x="-11.07" y="-7.42" smashed="yes"/>
 <element name="U$2" library="logos_apertus_axiom" package="APERTUS_LOGO_334X100" value="APERTUS_LOGO334X100" x="-9.075" y="1.72"/>
 <element name="U$3" library="logos_apertus_axiom" package="AXIOM_LOGO_525X80" value="AXIOM_LOGO525X80" x="-6.555" y="-0.48"/>
-<element name="FID1" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="-26.035" y="17.78"/>
-<element name="FID2" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="26.035" y="17.78"/>
-<element name="FID3" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="26.035" y="-17.78"/>
-<element name="FID4" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="-26.035" y="-17.78"/>
-<element name="FID5" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="-26.035" y="17.78" rot="MR180"/>
-<element name="FID6" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="26.035" y="17.78" rot="MR0"/>
-<element name="FID7" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="26.035" y="-17.78" rot="MR0"/>
-<element name="FID8" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="-26.035" y="-17.78" rot="MR180"/>
+<element name="FID1" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="-26.035" y="17.78" populate="no"/>
+<element name="FID2" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="26.035" y="17.78" populate="no"/>
+<element name="FID3" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="26.035" y="-17.78" populate="no"/>
+<element name="FID4" library="fiducial" package="FID_ARROW" value="FIDUCIAL" x="-26.035" y="-17.78" populate="no"/>
+<element name="FID5" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="-26.035" y="17.78" populate="no" rot="MR180"/>
+<element name="FID6" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="26.035" y="17.78" populate="no" rot="MR0"/>
+<element name="FID7" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="26.035" y="-17.78" populate="no" rot="MR0"/>
+<element name="FID8" library="fiducial" package="FID_3ARROW" value="FIDUCIAL-3A" x="-26.035" y="-17.78" populate="no" rot="MR180"/>
 </elements>
 <signals>
 <signal name="N_VE" class="1">

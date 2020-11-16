@@ -81,7 +81,7 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
         x = float(x) + offset_x + board_width / 2 + board_offset_x / 2
         y = float(
                 y) + offset_y + board_height / 2 + board_offset_y / 2
-        components_top.append((name + suffix, x, y, rotation))
+        components_top.append((name + suffix, x, y, int(rotation) % 360))
 
     file = open(EAGLE_DATA_DIR + pcb_name + "/" + pcb_name + ".mnb", "r")
     for line in file:
@@ -93,7 +93,7 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
         x = float(x) + offset_x + board_width / 2 + board_offset_x / 2
         y = float(
                 y) + offset_y + board_height / 2 + board_offset_y / 2
-        components_bottom.append((name + suffix, x, y, rotation))
+        components_bottom.append((name + suffix, x, y, int(rotation) % 360))
 
 
 def draw_component_positions():

@@ -143,6 +143,8 @@ def generate_background(suffix, cream_layer_file):
 def main():
     start_time = time.time()
 
+    setup()
+
     if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
         generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
 

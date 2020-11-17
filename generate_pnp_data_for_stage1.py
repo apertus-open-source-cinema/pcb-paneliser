@@ -121,14 +121,17 @@ def write_component_positions(file_top, file_bottom):
     for component in components_top:
         name, x, y, rotation = component
         file_top.write(
-            name + "|" + str(x).replace(".", ",") + "|" + str(y).replace(".", ",") + "|" + str(rotation).replace(".",
-                                                                                                                 ",") + "\n")
+                name + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".",
+                                                                                                 ",") + "|" + str(
+                        rotation).replace(".",
+                                          ",") + "\n")
 
     for component in components_bottom:
         name, x, y, rotation = component
         file_bottom.write(
-            name + "|" + str(x).replace(".", ",") + "|" + str(y).replace(".", ",") + "|" + str(rotation).replace(".",
-                                                                                                                 ",") + "\n")
+                name + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".", ",") + "|" + str(rotation).replace(
+                        ".",
+                        ",") + "\n")
 
 
 def generate_background(suffix, cream_layer_file):

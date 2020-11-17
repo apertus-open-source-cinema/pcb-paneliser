@@ -35,6 +35,8 @@ component_context_bottom = GerberComposition(settings=GerberSettings)
 def setup():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
+    if not os.path.exists(TEMP_DIR):
+        os.makedirs(TEMP_DIR)
 
 
 def get_board_dimensions(xml_root):

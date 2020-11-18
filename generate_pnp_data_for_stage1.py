@@ -1,3 +1,4 @@
+import csv
 import os
 import time
 from math import radians
@@ -12,8 +13,11 @@ OUTPUT_DIR = "output_stage1_pnp/"
 EAGLE_DATA_DIR = "input/EAGLE/"
 TEMP_DIR = "temp/"
 
+BOM_FILE = "input/BOM/BOM.tsv"
+
 components_top = []
 components_bottom = []
+tele_components = {}
 
 components_top_doc = ezdxf.new('R2010')
 components_top_msp = components_top_doc.modelspace()
@@ -120,16 +124,20 @@ def write_origin(file_top, file_bottom):
 def write_component_positions(file_top, file_bottom):
     for component in components_top:
         name, x, y, rotation = component
+        tele_id = tele_components.get(name, "")
         file_top.write(
-                name + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".",
-                                                                                                 ",") + "|" + str(
+                name + "|" + tele_id + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".",
+                                                                                                                 ",") + "|" + str(
                         rotation).replace(".",
                                           ",") + "\n")
 
     for component in components_bottom:
         name, x, y, rotation = component
+        tele_id = tele_components.get(name, "")
         file_bottom.write(
-                name + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".", ",") + "|" + str(rotation).replace(
+                name + "|" + tele_id + "|" + str(round(x, 3)).replace(".", ",") + "|" + str(round(y, 3)).replace(".",
+                                                                                                                 ",") + "|" + str(
+                        rotation).replace(
                         ".",
                         ",") + "\n")
 
@@ -143,6 +151,20 @@ def generate_background(suffix, cream_layer_file):
     board_context.dump(OUTPUT_DIR + "pnp_background_" + suffix + ".ger")
 
 
+def load_bom_components():
+    with open(BOM_FILE) as bom_file:
+        for i in range(6):
+            next(bom_file)
+        reader = csv.DictReader(bom_file, delimiter='\t')
+        for row in reader:
+            pcb_name = row["PCB"][:2]
+            parts = row["Schematic Reference"].split(',')
+            tele_id = row["Tele ID"]
+            for part in parts:
+                part = part.strip()
+                tele_components[part + "_" + pcb_name] = tele_id.strip()
+
+
 def main():
     start_time = time.time()
 
@@ -154,10 +176,10 @@ def main():
     if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
         generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
 
-    get_components("axiom_beta_main_board_v0.37_r1.1", "_1", 7.5, 10 + 57.15, True)  # 7.5 + 57.15
-    get_components("axiom_beta_power_board_v0.37_r1.2", "_2", 57.15 + 10, 57.15 + 10, True)
-    get_components("axiom_beta_interface_dummy_v0.13_r1.3", "_3", 10 + 57.15, 7.5)
-    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.5c", "_4", 7.5, 7.5)
+    get_components("axiom_beta_main_board_v0.37_r1.1", "_MB", 7.5, 10 + 57.15, True)  # 7.5 + 57.15
+    get_components("axiom_beta_power_board_v0.37_r1.2", "_PB", 57.15 + 10, 57.15 + 10, True)
+    get_components("axiom_beta_interface_dummy_v0.13_r1.3", "_IB", 10 + 57.15, 7.5)
+    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.5c", "_SB", 7.5, 7.5)
 
     draw_component_positions()
 
@@ -170,6 +192,8 @@ def main():
     dxf = gerberex.read(TEMP_DIR + "components_bottom.dxf")
     component_context_bottom.merge(dxf)
     component_context_bottom.dump(OUTPUT_DIR + "component_position_bottom.ger")
+
+    load_bom_components()
 
     file_top = open(OUTPUT_DIR + "pnp_data_top.asc", "w")
     file_bottom = open(OUTPUT_DIR + "pnp_data_bottom.asc", "w")

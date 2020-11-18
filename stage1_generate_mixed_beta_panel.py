@@ -209,7 +209,7 @@ def main():
 
     panel_width = frame_width * 2 + cutout_width * 3 + 57.15 * 2
     panel_height = frame_width * 2 + cutout_width * 3 + 57.15 + 111.76
-    
+
     # Commented out to disable outer frame for mixed panel (stage 2)
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
@@ -234,7 +234,7 @@ def main():
     place_bot_origin(panel_width - 5, 2.5)
 
     # labels
-    place_subpanel_label(panel_width - 1.5, 8)
+    place_subpanel_label(4.5, 8)
 
     board_cutout_doc.saveas(TEMP_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(TEMP_DIR + 'board_outline.dxf')

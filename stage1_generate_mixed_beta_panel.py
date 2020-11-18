@@ -139,7 +139,7 @@ def place_panel_label(x, y):
 
 def place_subpanel_label(x, y):
     # silk screen label
-    label = gerberex.read(ELEMENTS_DIR + "subpanel_label.gbr")
+    label = gerberex.read(ELEMENTS_DIR + "subpanel_label_eagle7.ger")
     label.to_metric()
     label.rotate(90)
     label.offset(x, y)
@@ -209,8 +209,9 @@ def main():
 
     panel_width = frame_width * 2 + cutout_width * 3 + 57.15 * 2
     panel_height = frame_width * 2 + cutout_width * 3 + 57.15 + 111.76
+    
     # Commented out to disable outer frame for mixed panel (stage 2)
-    # generate_outer_frame(board_cutout_msp, panel_width, panel_height)
+    generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
     add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.5c", 0, 0)
     add_pcb("axiom_beta_interface_dummy_v0.13_r1.3", 57.15 + cutout_width, 0)
@@ -221,16 +222,16 @@ def main():
     generate_pcb_bridges(board_cutout_msp, area, cutout_width, 4, 6)
 
     # fiducials
-    place_top_fiducial(2.5, 2.5)
-    place_top_fiducial(2.5, panel_height - 2.5)
-    place_top_fiducial(panel_width - 2.5, panel_height - 2.5)
-    place_bot_fiducial(2.5, 2.5)
-    place_bot_fiducial(2.5, panel_height - 2.5)
-    place_bot_fiducial(panel_width - 2.5, panel_height - 2.5)
+    place_top_fiducial(5, 2.5)
+    place_top_fiducial(5, panel_height - 2.5)
+    place_top_fiducial(panel_width - 5, panel_height - 2.5)
+    place_bot_fiducial(5, 2.5)
+    place_bot_fiducial(5, panel_height - 2.5)
+    place_bot_fiducial(panel_width - 5, panel_height - 2.5)
 
     # origin
-    place_top_origin(panel_width - 2.5, 2.5)
-    place_bot_origin(panel_width - 2.5, 2.5)
+    place_top_origin(panel_width - 5, 2.5)
+    place_bot_origin(panel_width - 5, 2.5)
 
     # labels
     place_subpanel_label(panel_width - 1.5, 8)

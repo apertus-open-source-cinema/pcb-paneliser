@@ -14,7 +14,7 @@ INPUT_DIR = "input/base_variant/"
 OUTPUT_DIR = "output_stage1/"
 TEMP_DIR = "temp/"
 
-cutout_width = 2.5  # mm
+cutout_width = 2.54  # mm
 frame_width = 5  # mm
 
 board_cutout_doc = ezdxf.new('R2010')

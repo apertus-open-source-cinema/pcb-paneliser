@@ -9948,7 +9948,7 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <attributes>
 </attributes>
 <variantdefs>
-<variantdef name="Beta" current="yes"/>
+<variantdef name="Beta"/>
 <variantdef name="Min"/>
 <variantdef name="Tele"/>
 </variantdefs>

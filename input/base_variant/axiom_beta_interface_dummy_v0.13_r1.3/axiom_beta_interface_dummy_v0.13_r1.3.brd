@@ -139,8 +139,8 @@
 <wire x1="-38.354" y1="38.1" x2="-37.846" y2="38.1" width="0.1524" layer="48"/>
 <wire x1="38.1" y1="-37.846" x2="38.1" y2="-38.354" width="0.1524" layer="48"/>
 <wire x1="37.846" y1="-38.1" x2="38.354" y2="-38.1" width="0.1524" layer="48"/>
-<text x="-7.67" y="-6.22" size="0.7112" layer="53" font="vector" ratio="15" align="center-left">Copyright (C) 2015 Herbert Pötzl
-Licensed under CERN OHL v.1.2</text>
+<text x="-7.67" y="-6.22" size="0.7112" layer="53" font="vector" ratio="15" align="center-left">Copyright (C) 2015-2020 H.Pötzl
+Licensed under CERN OHL v1.2</text>
 <text x="0" y="6.985" size="1.08" layer="53" font="vector" ratio="15" align="center">Dummy Interface Board</text>
 <text x="3.095" y="-3.165" size="1.905" layer="53" font="vector" ratio="14" rot="SR0">beta</text>
 <wire x1="-8.975" y1="1.885" x2="-8.025" y2="1.885" width="0.254" layer="53"/>

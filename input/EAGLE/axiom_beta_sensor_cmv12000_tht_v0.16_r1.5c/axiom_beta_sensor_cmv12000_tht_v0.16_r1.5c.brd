@@ -147,7 +147,7 @@
 <wire x1="11.2" y1="4.69" x2="11.2" y2="-4.69" width="0.127" layer="20"/>
 <wire x1="11.2" y1="-4.69" x2="8.66" y2="-7.23" width="0.127" layer="20" curve="-90"/>
 <text x="0" y="24.765" size="1.016" layer="53" font="vector" ratio="15" align="center">AXIOM Beta CMV12000 Sensor Board</text>
-<text x="0" y="-19.685" size="1.016" layer="53" font="vector" ratio="15" align="center">Copyright (C) 2015-2017 H.Pötzl
+<text x="0" y="-19.685" size="1.016" layer="53" font="vector" ratio="15" align="center">Copyright (C) 2015-2020 H.Pötzl
 Licensed under CERN OHL v1.2</text>
 <text x="-24.13" y="20.32" size="1.016" layer="53" font="vector" ratio="15" align="center">V0.16
 R1.5c</text>

@@ -80,8 +80,19 @@ def add_layer(context, file_path, x, y, rotate):
 
     # if rotate:
     #    layer.rotate(90)
-    layer.offset(x, y)
 
+    layer.offset(x, y)
+    context.merge(layer)
+
+
+def add_drill_layer(context, file_path, x, y, rotate):
+    layer = gerberex.read(file_path, format=(2, 4))
+    layer.to_metric()
+
+    # if rotate:
+    #    layer.rotate(90)
+
+    layer.offset(x, y)
     context.merge(layer)
 
 
@@ -107,7 +118,6 @@ def add_pcb(pcb_name, x, y, rotate=False, generate_frame=True, merge_outline=Tru
     board_pos_x -= board_offset_x
     board_pos_y -= board_offset_y
 
-    #if pcb_name.startswith("axiom"):
     remove_gerber_outline(board_outline)
 
     board_outline.offset(board_pos_x, board_pos_y)
@@ -125,11 +135,9 @@ def add_pcb(pcb_name, x, y, rotate=False, generate_frame=True, merge_outline=Tru
     add_layer(internalplane1_layer_context, pcb_file_path + ".internalplane1.ger", board_pos_x, board_pos_y, rotate)
     add_layer(internalplane2_layer_context, pcb_file_path + ".internalplane2.ger", board_pos_x, board_pos_y, rotate)
 
-    add_layer(drills_context, pcb_file_path + ".drills.xln", board_pos_x, board_pos_y, rotate)
+    add_drill_layer(drills_context, pcb_file_path + ".drills.xln", board_pos_x, board_pos_y, rotate)
 
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
-
-    # generate_pcb_frame(board_cutout_msp, board_pos_x, board_pos_y, board_width, board_height, cutout_width)
 
 
 def place_panel_label(x, y):
@@ -220,7 +228,7 @@ def main():
     add_pcb("axiom_beta_interface_dummy_v0.13_r1.3", 57.15 + cutout_width, 0)
     add_pcb("axiom_beta_main_board_v0.37_r1.1", 0, 57.15 + cutout_width)
     add_pcb("axiom_beta_power_board_v0.37_r1.2", 57.15 + cutout_width, 57.15 + cutout_width)
-    
+
     # impedance test strip
     add_pcb("test_strip_v0.1", 0.1, 0.1, generate_frame=False, merge_outline=False)
 

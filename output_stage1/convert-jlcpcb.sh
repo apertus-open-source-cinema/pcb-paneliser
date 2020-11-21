@@ -3,8 +3,8 @@
 mkdir jlcpcb
 
 # *.xln -> *.drd
-for f in *.xln; do 
-    cp -- "$f" "jlcpcb/${f%.xln}.drd"
+for f in *.drills.xln; do 
+    cp -- "$f" "jlcpcb/${f%.drills.xln}.drd"
 done
 
 # *.toplayer.ger -> *.cmp

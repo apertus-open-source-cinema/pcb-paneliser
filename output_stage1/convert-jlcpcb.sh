@@ -14,7 +14,7 @@ done
 
 # *.topsoldermask.ger -> *.stc
 for f in *.topsoldermask.ger; do 
-    cp -- "$f" "jlcpcb/${f%.topsoldermask.ger}.cmp"
+    cp -- "$f" "jlcpcb/${f%.topsoldermask.ger}.stc"
 done
 
 # *.topcream.ger -> *.crc

@@ -3,18 +3,18 @@
 mkdir jlcpcb
 
 # *.xln -> *.drd
-for f in *.xln; do 
-    cp -- "$f" "jlcpcb/${f%.xln}.drd"
+for f in *.drills.xln; do 
+    cp -- "$f" "jlcpcb/${f%.drills.xln}.drd"
 done
 
-# *.toplayer.ger -> *.cmp
+# *.toplayer.ger -> *.GTL
 for f in *.toplayer.ger; do 
-    cp -- "$f" "jlcpcb/${f%.toplayer.ger}.cmp"
+    cp -- "$f" "jlcpcb/${f%.toplayer.ger}.GTL"
 done
 
 # *.topsoldermask.ger -> *.stc
 for f in *.topsoldermask.ger; do 
-    cp -- "$f" "jlcpcb/${f%.topsoldermask.ger}.cmp"
+    cp -- "$f" "jlcpcb/${f%.topsoldermask.ger}.stc"
 done
 
 # *.topcream.ger -> *.crc
@@ -27,19 +27,19 @@ for f in *.topsilkscreen.ger; do
     cp -- "$f" "jlcpcb/${f%.topsilkscreen.ger}.plc"
 done
 
-# *.internalplane1.ger -> *.ly2
+# *.internalplane1.ger -> *.G2L
 for f in *.internalplane1.ger; do 
-    cp -- "$f" "jlcpcb/${f%.internalplane1.ger}.ly2"
+    cp -- "$f" "jlcpcb/${f%.internalplane1.ger}.G2L"
 done
 
-# *.internalplane2.ger -> *.l15
+# *.internalplane2.ger -> *.G3L
 for f in *.internalplane2.ger; do 
-    cp -- "$f" "jlcpcb/${f%.internalplane2.ger}.l15"
+    cp -- "$f" "jlcpcb/${f%.internalplane2.ger}.G3L"
 done
 
-# *.bottomlayer.ger -> *.sol
+# *.bottomlayer.ger -> *.GBL
 for f in *.bottomlayer.ger; do 
-    cp -- "$f" "jlcpcb/${f%.bottomlayer.ger}.sol"
+    cp -- "$f" "jlcpcb/${f%.bottomlayer.ger}.GBL"
 done
 
 # *.bottomsoldermask.ger -> *.sts
@@ -57,8 +57,8 @@ for f in *.bottomsilkscreen.ger; do
     cp -- "$f" "jlcpcb/${f%.bottomsilkscreen.ger}.pls"
 done
 
-# *.boardoutline.ger -> *.gko
+# *.boardoutline.ger -> *.GKO
 for f in *.boardoutline.ger; do 
-    cp -- "$f" "jlcpcb/${f%.boardoutline.ger}.gko"
+    cp -- "$f" "jlcpcb/${f%.boardoutline.ger}.GKO"
 done
 

@@ -20400,7 +20400,7 @@ DIN A3, landscape with location and doc. field</description>
 </attributes>
 <variantdefs>
 <variantdef name="Beta"/>
-<variantdef name="Tele" current="yes"/>
+<variantdef name="Tele"/>
 </variantdefs>
 <classes>
 <class number="0" name="default" width="0.1524" drill="0.254">

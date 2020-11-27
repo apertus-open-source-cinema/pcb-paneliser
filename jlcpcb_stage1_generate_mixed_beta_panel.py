@@ -11,7 +11,7 @@ from frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_o
 
 ELEMENTS_DIR = "input/elements/"
 INPUT_DIR = "input/base_variant/"
-OUTPUT_DIR = "output_stage1/"
+OUTPUT_DIR = "jlcpcb_output_stage1/"
 TEMP_DIR = "temp/"
 
 cutout_width = 2.54  # mm
@@ -240,7 +240,7 @@ def main():
     add_pcb("test_strip_v0.1_r1.1", 0.1, 0.1, generate_frame=False, merge_outline=False)
 
     global INPUT_DIR
-    INPUT_DIR = "input/jlcpcb_variant/"
+    INPUT_DIR = "input/base_variant/"
     add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.5c_jlcpcb", 0, 0)
 
     area = [0, 0, panel_width, panel_height]

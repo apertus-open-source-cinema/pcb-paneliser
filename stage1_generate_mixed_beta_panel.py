@@ -148,14 +148,6 @@ def place_panel_label(x, y):
     silkscreen_top_layer_context.merge(label)
 
 
-def place_jlcpcb_label(x, y):
-    # silk screen label
-    label = gerberex.read(ELEMENTS_DIR + "jlc-id.ger")
-    label.to_metric()
-    label.offset(x, y)
-    silkscreen_top_layer_context.merge(label)
-
-
 def place_subpanel_label(x, y):
     # silk screen label
     label = gerberex.read(ELEMENTS_DIR + "subpanel_label_eagle7.ger")
@@ -257,7 +249,6 @@ def main():
 
     # labels
     place_subpanel_label(4.5, 8)
-    place_jlcpcb_label(10, 1)
 
     board_cutout_doc.saveas(TEMP_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(TEMP_DIR + 'board_outline.dxf')

@@ -13,16 +13,26 @@ field_names = []
 
 
 def determine_side(components, pcb_name):
-    top = set(components) <= set(top_components[pcb_name])
-    bottom = set(components) <= set(bottom_components[pcb_name])
+    top = 0
+    bottom = 0
+
+    for component in components:
+        if component in top_components[pcb_name]:
+            top = top + 1
+        if component in bottom_components[pcb_name]:
+            bottom = bottom + 1
+
+    # top = set(components) <= set(top_components[pcb_name])
+    # bottom = set(components) <= set(bottom_components[pcb_name])
 
     side = "N/A"
-    if top and bottom:
-        side = "UNCLEAR"
-    if top:
-        side = "TOP"
-    if bottom:
-        side = "BOT"
+    if top > 0 and bottom > 0:
+        side = "TOP/BOT"
+    else:
+        if top > 0:
+            side = "TOP"
+        if bottom > 0:
+            side = "BOT"
     return side
 
 
@@ -57,21 +67,23 @@ def load_bom_components():
             csv_data.append(row)
 
 
-def get_components_list(components, file):
+def get_components_list(file):
+    components = []
+
     for line in file:
         name, x, y, rotation, *temp = line.split()
         components.append(name)
 
+    return components
+
 
 def get_components(pcb_name, suffix):
     file = open(EAGLE_DATA_DIR + pcb_name + "/" + pcb_name + ".mnt", "r")
-    components = []
-    get_components_list(components, file)
+    components = get_components_list(file)
     top_components[suffix] = components
 
     file = open(EAGLE_DATA_DIR + pcb_name + "/" + pcb_name + ".mnb", "r")
-    components = []
-    get_components_list(components, file)
+    components = get_components_list(file)
     bottom_components[suffix] = components
 
 

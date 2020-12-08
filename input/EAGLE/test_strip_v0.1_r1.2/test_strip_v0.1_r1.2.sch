@@ -314,6 +314,9 @@
 <class number="0" name="default" width="0.1524" drill="0.2032">
 <clearance class="0" value="0.1524"/>
 </class>
+<class number="1" name="LVDS" width="0.1524" drill="0.2032">
+<clearance class="1" value="0.1524"/>
+</class>
 </classes>
 <parts>
 <part name="X1" library="sma" deviceset="BU-SMA-E" device="-ND" value="BU-SMA-E-ND"/>
@@ -408,28 +411,28 @@
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 </net>
-<net name="SIGA_P" class="0">
+<net name="SIGA_P" class="1">
 <segment>
 <pinref part="X1" gate="A" pin="1"/>
 <wire x1="30.48" y1="48.26" x2="96.52" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="X3" gate="A" pin="1"/>
 </segment>
 </net>
-<net name="SIGA_N" class="0">
+<net name="SIGA_N" class="1">
 <segment>
 <pinref part="X2" gate="A" pin="1"/>
 <wire x1="30.48" y1="38.1" x2="96.52" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="X4" gate="A" pin="1"/>
 </segment>
 </net>
-<net name="SIGB_P" class="0">
+<net name="SIGB_P" class="1">
 <segment>
 <pinref part="X5" gate="A" pin="1"/>
 <wire x1="30.48" y1="-22.86" x2="96.52" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="X7" gate="A" pin="1"/>
 </segment>
 </net>
-<net name="SIGB_N" class="0">
+<net name="SIGB_N" class="1">
 <segment>
 <pinref part="X6" gate="A" pin="1"/>
 <wire x1="30.48" y1="-33.02" x2="96.52" y2="-33.02" width="0.1524" layer="91"/>

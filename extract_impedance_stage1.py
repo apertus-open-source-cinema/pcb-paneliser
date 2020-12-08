@@ -44,7 +44,7 @@ def main():
     xml_root = tree.getroot()
     lvds_signals = xml_root.findall(".//signal[@class=\"1\"]")
     for signal in lvds_signals:
-        traces = signal.findall(".//wire[@layer=\"1\"]")
+        traces = signal.findall(".//wire[@layer=\"1\"]") # layer 1 is topcopper
         for trace in traces:
             x1, y1 = trace.attrib["x1"], trace.attrib["y1"]
             x2, y2 = trace.attrib["x2"], trace.attrib["y2"]
@@ -61,6 +61,25 @@ def main():
     dxf.width = width
     traces_gerber.merge(dxf)
     traces_gerber.dump(OUTPUT_DIR / "impedance.toplayer.ger")
+
+    for signal in lvds_signals:
+        traces = signal.findall(".//wire[@layer=\"16\"]") # layer 16 is bottomcopper
+        for trace in traces:
+            x1, y1 = trace.attrib["x1"], trace.attrib["y1"]
+            x2, y2 = trace.attrib["x2"], trace.attrib["y2"]
+            width = float(trace.attrib["width"])
+            curve = 0
+            if "curve" in trace.attrib:
+                curve = float(trace.attrib["curve"])
+            trace_msp.add_lwpolyline([(float(x1) + frame_width + cutout_width + sb_width/2, float(y1) + frame_width + cutout_width + sb_height/2, 
+                width, curve / 180.0), (float(x2) + frame_width  + cutout_width + sb_width/2, float(y2) + frame_width + cutout_width + sb_height/2)],
+                                     format='xysb')
+
+    trace_doc.saveas("impedance.bottomcopper.dxf")
+    dxf = gerberex.read("impedance.bottomcopper.dxf")
+    dxf.width = width
+    traces_gerber.merge(dxf)
+    traces_gerber.dump(OUTPUT_DIR / "impedance.bottomcopper.ger")
 
 
 if __name__ == "__main__":

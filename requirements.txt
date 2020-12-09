@@ -3,3 +3,4 @@ pcb-tools
 pcb-tools-extension
 tabulate
 shapely
+Hershey-Fonts

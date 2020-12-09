@@ -7,7 +7,7 @@ from gerberex import DrillComposition
 from gerberex import GerberComposition
 from tabulate import tabulate
 
-from frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_outer_frame
+from ..frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_outer_frame
 
 ELEMENTS_DIR = "input/elements/"
 INPUT_DIR = "input/base_variant/"

@@ -1,8 +1,10 @@
 import os
 import time
+from datetime import date
 
 import ezdxf
 import gerberex
+from HersheyFonts import HersheyFonts
 from gerberex import DrillComposition
 from gerberex import GerberComposition
 from tabulate import tabulate
@@ -19,6 +21,14 @@ frame_width = 5  # mm
 
 board_cutout_doc = ezdxf.new('R2010')
 board_cutout_msp = board_cutout_doc.modelspace()
+
+board_info_doc = ezdxf.new('R2010')
+board_info_msp = board_info_doc.modelspace()
+
+font = HersheyFonts()
+font.load_default_font()
+
+today = date.today()
 
 
 class GerberSettings:
@@ -140,6 +150,17 @@ def add_pcb(pcb_name, x, y, rotate=False, generate_frame=True, merge_outline=Tru
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
 
 
+def draw_text(text, x, y, rotated=False):
+    for (x1, y1), (x2, y2) in font.lines_for_text(text):
+        if rotated:
+            x1, y1, x2, y2 = -y1, x1, -y2, x2
+
+        x1, y1, x2, y2 = x1 + x, y1 + y, x2 + x, y2 + y
+
+        board_info_msp.add_lwpolyline([(x1, y1), (x2, y2)],
+                                      format='xy')
+
+
 def place_panel_label(x, y):
     # silk screen label
     label = gerberex.read(ELEMENTS_DIR + "panel_label.gbr")
@@ -149,12 +170,9 @@ def place_panel_label(x, y):
 
 
 def place_subpanel_label(x, y):
-    # silk screen label
-    label = gerberex.read(ELEMENTS_DIR + "subpanel_label_eagle7.ger")
-    label.to_metric()
-    label.rotate(90)
-    label.offset(x, y)
-    silkscreen_top_layer_context.merge(label)
+    font.normalize_rendering(2)
+    label_text = "Mixed Subpanel - Version 0.4 - (Date) " + today.strftime("%d.%m.%Y") + " (DD.MM.YYYY)"
+    draw_text(label_text, x, y, True)
 
 
 def place_top_fiducial(x, y):
@@ -248,12 +266,16 @@ def main():
     place_bot_origin(panel_width - 5, 2.5)
 
     # labels
-    place_subpanel_label(4.5, 8)
+    place_subpanel_label(3.5, 8)
 
     board_cutout_doc.saveas(TEMP_DIR + 'board_outline.dxf')
     dxf_file = gerberex.read(TEMP_DIR + 'board_outline.dxf')
     board_outline_context.merge(dxf_file)
     board_outline_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.boardoutline.ger")
+
+    board_info_doc.saveas(TEMP_DIR + 'board_info.dxf')
+    dxf_file = gerberex.read(TEMP_DIR + 'board_info.dxf')
+    silkscreen_top_layer_context.merge(dxf_file)
 
     copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
     soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")

@@ -2522,6 +2522,88 @@ Rotated and pin reversed to match the polarization peg holes.</description>
 <wire x1="-22.2" y1="-20.05" x2="-22.4" y2="-19.65" width="0.127" layer="21"/>
 <wire x1="-22.4" y1="-19.65" x2="-22" y2="-19.65" width="0.127" layer="21"/>
 </package>
+<package name="61082-FAKE">
+<description>BergStak 61082 (same as on MicroZed)</description>
+<wire x1="22.9" y1="-2.9992" x2="20.1" y2="-2.9992" width="0.127" layer="51"/>
+<wire x1="20.1" y1="-2.9992" x2="20.1" y2="-2.5" width="0.127" layer="51"/>
+<wire x1="20.1" y1="-2.5" x2="20.1" y2="-2.4992" width="0.127" layer="51"/>
+<wire x1="19.95" y1="-2.4992" x2="-19.95" y2="-2.4992" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="-2.4992" x2="-20.1" y2="-2.5" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="-2.5" x2="-20.1" y2="-2.9992" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="-2.9992" x2="-22.9" y2="-2.9992" width="0.127" layer="51"/>
+<wire x1="-22.9" y1="-2.9992" x2="-22.9" y2="3.0008" width="0.127" layer="51"/>
+<wire x1="-22.9" y1="3.0008" x2="-20.1" y2="3.0008" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="3.0008" x2="-20.1" y2="2.5008" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="2.5008" x2="19.95" y2="2.5008" width="0.127" layer="51"/>
+<wire x1="20.1" y1="2.5008" x2="20.1" y2="3.0008" width="0.127" layer="51"/>
+<wire x1="20.1" y1="3.0008" x2="22.9" y2="3.0008" width="0.127" layer="51"/>
+<wire x1="22.9" y1="3.0008" x2="22.9" y2="-2.9992" width="0.127" layer="51"/>
+<wire x1="20.1" y1="-0.4992" x2="-20.1" y2="-0.4992" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="-0.4992" x2="-20.1" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="-20.1" y1="0.5008" x2="20.1" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="20.1" y1="0.5008" x2="20.1" y2="-0.4992" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="2.0008" x2="19.95" y2="2.0008" width="0.127" layer="51"/>
+<wire x1="21.8" y1="2" x2="21.8" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="21.8" y1="0.5008" x2="22.4" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="22.4" y1="0.5008" x2="22.4" y2="-2" width="0.127" layer="51"/>
+<wire x1="19.95" y1="-1.9992" x2="-19.95" y2="-1.9992" width="0.127" layer="51"/>
+<wire x1="-22.4" y1="-2" x2="-22.4" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="-22.4" y1="0.5008" x2="-21.8" y2="0.5008" width="0.127" layer="51"/>
+<wire x1="-21.8" y1="0.5008" x2="-21.8" y2="2" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="2.5" x2="-20.1" y2="2.5" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="2" x2="-21.8" y2="2" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="-2" x2="-22.4" y2="-2" width="0.127" layer="51"/>
+<wire x1="-19.95" y1="-2.5" x2="-20.1" y2="-2.5" width="0.127" layer="51"/>
+<wire x1="22.4" y1="-2" x2="19.95" y2="-2" width="0.127" layer="51"/>
+<wire x1="19.95" y1="-2.5" x2="20.1" y2="-2.5" width="0.127" layer="51"/>
+<wire x1="19.95" y1="2.5" x2="20.1" y2="2.5" width="0.127" layer="51"/>
+<wire x1="19.95" y1="2" x2="21.8" y2="2" width="0.127" layer="51"/>
+<wire x1="22.4" y1="2.575" x2="22.2" y2="2.175" width="0.127" layer="51"/>
+<wire x1="22.2" y1="2.175" x2="22" y2="2.575" width="0.127" layer="51"/>
+<wire x1="22" y1="2.575" x2="22.4" y2="2.575" width="0.127" layer="51"/>
+</package>
+<package name="61083-FAKE">
+<description>BergStak 61083 (mating connector to MicroZed)</description>
+<wire x1="-22.9" y1="3.0008" x2="-20.1" y2="3.0008" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="3.0008" x2="-20.1" y2="2.5008" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="2.5008" x2="19.95" y2="2.5008" width="0.127" layer="52"/>
+<wire x1="20.1" y1="2.5008" x2="20.1" y2="3.0008" width="0.127" layer="52"/>
+<wire x1="20.1" y1="3.0008" x2="22.9" y2="3.0008" width="0.127" layer="52"/>
+<wire x1="22.9" y1="3.0008" x2="22.9" y2="-2.9992" width="0.127" layer="52"/>
+<wire x1="22.9" y1="-2.9992" x2="20.1" y2="-2.9992" width="0.127" layer="52"/>
+<wire x1="20.1" y1="-2.9992" x2="20.1" y2="-2.5" width="0.127" layer="52"/>
+<wire x1="20.1" y1="-2.5" x2="20.1" y2="-2.4992" width="0.127" layer="52"/>
+<wire x1="19.95" y1="-2.4992" x2="-19.95" y2="-2.4992" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="-2.4992" x2="-20.1" y2="-2.5" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="-2.5" x2="-20.1" y2="-2.9992" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="-2.9992" x2="-22.9" y2="-2.9992" width="0.127" layer="52"/>
+<wire x1="-22.9" y1="-2.9992" x2="-22.9" y2="3.0008" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="0.5008" x2="20.1" y2="0.5008" width="0.127" layer="52"/>
+<wire x1="20.1" y1="0.5008" x2="20.1" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="20.1" y1="-0.4992" x2="-20.1" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="-20.1" y1="-0.4992" x2="-20.1" y2="0.5008" width="0.127" layer="52"/>
+<wire x1="19.95" y1="-1.9992" x2="-19.95" y2="-1.9992" width="0.127" layer="52"/>
+<wire x1="-21.8" y1="-2" x2="-21.8" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="-21.8" y1="-0.4992" x2="-22.4" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="-22.4" y1="-0.4992" x2="-22.4" y2="2" width="0.127" layer="52"/>
+<wire x1="-22.4" y1="2" x2="-22.4" y2="2.0008" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="2.0008" x2="19.95" y2="2.0008" width="0.127" layer="52"/>
+<wire x1="22.4" y1="2.0008" x2="22.4" y2="2" width="0.127" layer="52"/>
+<wire x1="22.4" y1="2" x2="22.4" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="22.4" y1="-0.4992" x2="21.8" y2="-0.4992" width="0.127" layer="52"/>
+<wire x1="21.8" y1="-0.4992" x2="21.8" y2="-2" width="0.127" layer="52"/>
+<wire x1="19.95" y1="2" x2="22.4" y2="2" width="0.127" layer="52"/>
+<wire x1="19.95" y1="-2" x2="21.8" y2="-2" width="0.127" layer="52"/>
+<wire x1="19.95" y1="-2.5" x2="20.1" y2="-2.5" width="0.127" layer="52"/>
+<wire x1="19.95" y1="2.5" x2="20.1" y2="2.5" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="-2.5" x2="-20.1" y2="-2.5" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="-2" x2="-21.8" y2="-2" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="2" x2="-22.4" y2="2" width="0.127" layer="52"/>
+<wire x1="-19.95" y1="2.5" x2="-20.1" y2="2.5" width="0.127" layer="52"/>
+<wire x1="22" y1="-2.625" x2="22.2" y2="-2.225" width="0.127" layer="52"/>
+<wire x1="22.2" y1="-2.225" x2="22.4" y2="-2.625" width="0.127" layer="52"/>
+<wire x1="22.4" y1="-2.625" x2="22" y2="-2.625" width="0.127" layer="52"/>
+</package>
 </packages>
 <symbols>
 <symbol name="CTRL">
@@ -4220,6 +4302,16 @@ Rotated and pin reversed to match the polarization peg holes.</description>
 </technologies>
 </device>
 <device name="-61083" package="61083">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-61082F" package="61082-FAKE">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-61083F" package="61083-FAKE">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -6423,12 +6515,12 @@ DAT1</text>
 <wire x1="-0.75" y1="1.05" x2="-0.95" y2="1.05" width="0.127" layer="21"/>
 </package>
 <package name="DFN150X150X50-6N">
-<smd name="1" x="-0.49" y="0.5" dx="0.83" dy="0.35" layer="1" roundness="50"/>
-<smd name="2" x="-0.54" y="0" dx="0.73" dy="0.35" layer="1" roundness="50"/>
-<smd name="3" x="-0.54" y="-0.5" dx="0.73" dy="0.35" layer="1" roundness="50"/>
-<smd name="4" x="0.54" y="-0.5" dx="0.73" dy="0.35" layer="1" roundness="50" rot="R180"/>
-<smd name="5" x="0.54" y="0" dx="0.73" dy="0.35" layer="1" roundness="50" rot="R180"/>
-<smd name="6" x="0.54" y="0.5" dx="0.73" dy="0.35" layer="1" roundness="50" rot="R180"/>
+<smd name="1" x="-0.49" y="0.5" dx="0.83" dy="0.33" layer="1" roundness="50"/>
+<smd name="2" x="-0.54" y="0" dx="0.73" dy="0.33" layer="1" roundness="50"/>
+<smd name="3" x="-0.54" y="-0.5" dx="0.73" dy="0.33" layer="1" roundness="50"/>
+<smd name="4" x="0.54" y="-0.5" dx="0.73" dy="0.33" layer="1" roundness="50" rot="R180"/>
+<smd name="5" x="0.54" y="0" dx="0.73" dy="0.33" layer="1" roundness="50" rot="R180"/>
+<smd name="6" x="0.54" y="0.5" dx="0.73" dy="0.33" layer="1" roundness="50" rot="R180"/>
 <wire x1="-0.25" y1="0.75" x2="-0.75" y2="0.25" width="0.1524" layer="51"/>
 <wire x1="-0.75" y1="-0.75" x2="0.75" y2="-0.75" width="0.1524" layer="51"/>
 <wire x1="0.75" y1="-0.75" x2="0.75" y2="0.75" width="0.1524" layer="51"/>
@@ -9958,6 +10050,9 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <class number="1" name="LVDS" width="0.1524" drill="0.2032">
 <clearance class="1" value="0.1524"/>
 </class>
+<class number="2" name="power" width="0.254" drill="0.254">
+<clearance class="2" value="0.1524"/>
+</class>
 </classes>
 <parts>
 <part name="ZED" library="microzed" deviceset="µZ-FCI" device="-CONONLY" value="µZ-FCI-CONONLY">
@@ -10519,8 +10614,8 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <part name="R82" library="generic-rcl" deviceset="R" device="0402-B" value="1k6"/>
 <part name="GND163" library="supply" deviceset="GND" device=""/>
 <part name="GND164" library="supply" deviceset="GND" device=""/>
-<part name="CNW" library="spx3819" deviceset="SPX3819M5-L" device=""/>
-<part name="CSE" library="spx3819" deviceset="SPX3819M5-L" device=""/>
+<part name="CNW" library="spx3819" deviceset="SPX3819M5-L" device="" value="SPX3819M5-L-3-3"/>
+<part name="CSE" library="spx3819" deviceset="SPX3819M5-L" device="" value="SPX3819M5-L-3-3"/>
 <part name="GND165" library="supply" deviceset="GND" device=""/>
 <part name="GND167" library="supply" deviceset="GND" device=""/>
 <part name="C76" library="generic-rcl" deviceset="C" device="0402-B" value="10n"/>
@@ -10701,11 +10796,11 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <part name="C10" library="generic-rcl" deviceset="C" device="0603-B" value="10u"/>
 <part name="GND66" library="supply" deviceset="GND" device=""/>
 <part name="GND67" library="supply" deviceset="GND" device=""/>
-<part name="R110" library="generic-rcl" deviceset="R" device="0402-C" value="523k"/>
-<part name="R111" library="generic-rcl" deviceset="R" device="0402-C" value="100k"/>
+<part name="R110" library="generic-rcl" deviceset="R" device="0402-C" value="147k"/>
+<part name="R111" library="generic-rcl" deviceset="R" device="0402-C" value="28k"/>
 <part name="GND68" library="supply" deviceset="GND" device=""/>
-<part name="R114" library="generic-rcl" deviceset="R" device="0402-C" value="536k"/>
-<part name="R115" library="generic-rcl" deviceset="R" device="0402-C" value="100k"/>
+<part name="R114" library="generic-rcl" deviceset="R" device="0402-C" value="147k"/>
+<part name="R115" library="generic-rcl" deviceset="R" device="0402-C" value="28k"/>
 <part name="GND69" library="supply" deviceset="GND" device=""/>
 <part name="GND181" library="supply" deviceset="GND" device=""/>
 <part name="U1" library="pic16f15386" deviceset="PIC16F15325" device="-JQ"/>
@@ -10740,19 +10835,19 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <part name="R129" library="generic-rcl" deviceset="R" device="0402-C" value="180k"/>
 <part name="R130" library="generic-rcl" deviceset="R" device="0402-C" value="20k"/>
 <part name="GND194" library="supply" deviceset="GND" device=""/>
-<part name="JX1B" library="microzed" deviceset="BERGSTAK" device="-61083" value="BERGSTAK-61083">
+<part name="JX1B" library="microzed" deviceset="BERGSTAK" device="-61083F" value="BERGSTAK-61083F">
 <variant name="Beta" populate="no"/>
 <variant name="Min" populate="no"/>
 </part>
-<part name="JX2B" library="microzed" deviceset="BERGSTAK" device="-61083" value="BERGSTAK-61083">
+<part name="JX2B" library="microzed" deviceset="BERGSTAK" device="-61083F" value="BERGSTAK-61083F">
 <variant name="Beta" populate="no"/>
 <variant name="Min" populate="no"/>
 </part>
-<part name="JX2T" library="microzed" deviceset="BERGSTAK" device="-61082" value="BERGSTAK-61082">
+<part name="JX2T" library="microzed" deviceset="BERGSTAK" device="-61082F" value="BERGSTAK-61082F">
 <variant name="Beta" populate="no"/>
 <variant name="Min" populate="no"/>
 </part>
-<part name="JX1T" library="microzed" deviceset="BERGSTAK" device="-61082">
+<part name="JX1T" library="microzed" deviceset="BERGSTAK" device="-61082F" value="BERGSTAK-61082F">
 <variant name="Beta" populate="no"/>
 <variant name="Min" populate="no"/>
 </part>
@@ -10846,7 +10941,7 @@ Licensed under CERN OHL v.1.2</text>
 <busses>
 </busses>
 <nets>
-<net name="VCCO_35" class="0">
+<net name="VCCO_35" class="2">
 <segment>
 <pinref part="ZED" gate="_POWER" pin="VCCO_35@180"/>
 <wire x1="96.52" y1="149.86" x2="101.6" y2="149.86" width="0.1524" layer="91"/>
@@ -10862,7 +10957,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="104.14" y="154.94" size="0.8128" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VCCO_34" class="0">
+<net name="VCCO_34" class="2">
 <segment>
 <pinref part="ZED" gate="_POWER" pin="VCCO_34@80"/>
 <wire x1="55.88" y1="149.86" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
@@ -10878,7 +10973,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="48.26" y="154.94" size="0.8128" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="ZED_5V'" class="0">
+<net name="ZED_5V'" class="2">
 <segment>
 <pinref part="ZED" gate="_POWER" pin="VIN_HDR@112"/>
 <wire x1="96.52" y1="144.78" x2="101.6" y2="144.78" width="0.1524" layer="91"/>
@@ -10920,7 +11015,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="48.26" y="142.24" size="0.8128" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="VCCO_13" class="1">
+<net name="VCCO_13" class="2">
 <segment>
 <pinref part="ZED" gate="_POWER" pin="VCCO_13@198"/>
 <wire x1="96.52" y1="160.02" x2="104.14" y2="160.02" width="0.1524" layer="91"/>
@@ -11426,14 +11521,14 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
 </net>
-<net name="CSO_NE_V" class="0">
+<net name="CSO_NE_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="FPGA_VBAT"/>
 <wire x1="55.88" y1="160.02" x2="48.26" y2="160.02" width="0.1524" layer="91"/>
 <label x="48.26" y="160.02" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_N_V" class="0">
+<net name="PCIE_N_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VCCO_34@80"/>
 <wire x1="50.8" y1="152.4" x2="50.8" y2="149.86" width="0.1524" layer="91"/>
@@ -11445,7 +11540,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="48.26" y="152.4" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_S_V" class="0">
+<net name="PCIE_S_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VCCO_35@180"/>
 <wire x1="101.6" y1="152.4" x2="101.6" y2="149.86" width="0.1524" layer="91"/>
@@ -11457,21 +11552,21 @@ Licensed under CERN OHL v.1.2</text>
 <label x="104.14" y="152.4" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_I2C_V" class="0">
+<net name="PCIE_I2C_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VCCO_13@198"/>
 <wire x1="96.52" y1="160.02" x2="104.14" y2="160.02" width="0.1524" layer="91"/>
 <label x="104.14" y="160.02" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="CSO_SW_V" class="0">
+<net name="CSO_SW_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VIN_HDR@112"/>
 <wire x1="96.52" y1="144.78" x2="104.14" y2="144.78" width="0.1524" layer="91"/>
 <label x="104.14" y="144.78" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_S_5V" class="0">
+<net name="PCIE_S_5V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VIN_HDR@160"/>
 <pinref part="BETA" gate="_POWER" pin="VIN_HDR@159"/>
@@ -11495,14 +11590,14 @@ Licensed under CERN OHL v.1.2</text>
 <label x="48.26" y="137.16" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_N_VCCIO" class="0">
+<net name="PCIE_N_VCCIO" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VCCO_34@78"/>
 <wire x1="55.88" y1="154.94" x2="48.26" y2="154.94" width="0.1524" layer="91"/>
 <label x="48.26" y="154.94" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_S_VCCIO" class="0">
+<net name="PCIE_S_VCCIO" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VCCO_35@178"/>
 <wire x1="96.52" y1="154.94" x2="104.14" y2="154.94" width="0.1524" layer="91"/>
@@ -11530,7 +11625,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="276.86" y="121.92" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="PEX_S_V" class="0">
+<net name="PEX_S_V" class="2">
 <segment>
 <pinref part="BETA" gate="_POWER" pin="VIN_HDR@157"/>
 <wire x1="96.52" y1="142.24" x2="101.6" y2="142.24" width="0.1524" layer="91"/>
@@ -11883,7 +11978,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="GND194" gate="1" pin="GND"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="L18" gate="G$1" pin="2"/>
 <wire x1="129.54" y1="66.04" x2="134.62" y2="66.04" width="0.1524" layer="91"/>
@@ -11905,7 +12000,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="195.58" y1="144.78" x2="195.58" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="BETA_5V'" class="0">
+<net name="BETA_5V'" class="2">
 <segment>
 <label x="63.5" y="66.04" size="0.8128" layer="95" rot="R180" xref="yes"/>
 <pinref part="C83" gate="G$1" pin="1"/>
@@ -11933,7 +12028,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="73.66" y1="66.04" x2="68.58" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="REGOUT" class="0">
+<net name="REGOUT" class="2">
 <segment>
 <pinref part="C84" gate="G$1" pin="1"/>
 <wire x1="119.38" y1="66.04" x2="121.92" y2="66.04" width="0.1524" layer="91"/>
@@ -11957,7 +12052,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="73.66" y1="134.62" x2="76.2" y2="134.62" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="VIN" class="0">
+<net name="VIN" class="2">
 <segment>
 <pinref part="C7" gate="G$1" pin="1"/>
 <wire x1="66.04" y1="132.08" x2="66.04" y2="144.78" width="0.1524" layer="91"/>
@@ -12005,7 +12100,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="261.62" y="127" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="ZED_5V" class="0">
+<net name="ZED_5V" class="2">
 <segment>
 <pinref part="U2" gate="G$1" pin="VOUT"/>
 <wire x1="111.76" y1="144.78" x2="132.08" y2="144.78" width="0.1524" layer="91"/>
@@ -12032,7 +12127,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="73.66" y1="198.12" x2="76.2" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="BETA_5V" class="0">
+<net name="BETA_5V" class="2">
 <segment>
 <pinref part="U3" gate="G$1" pin="VOUT"/>
 <wire x1="111.76" y1="208.28" x2="132.08" y2="208.28" width="0.1524" layer="91"/>
@@ -13939,7 +14034,7 @@ MEM2051-00-195-00-A</text>
 <pinref part="U5" gate="A" pin="D2"/>
 </segment>
 </net>
-<net name="ZED_5V" class="0">
+<net name="ZED_5V" class="2">
 <segment>
 <pinref part="X1" gate="G$1" pin="2"/>
 <wire x1="157.48" y1="147.32" x2="147.32" y2="147.32" width="0.1524" layer="91"/>
@@ -13953,7 +14048,7 @@ MEM2051-00-195-00-A</text>
 <label x="147.32" y="144.78" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="BETA_5V" class="0">
+<net name="BETA_5V" class="2">
 <segment>
 <pinref part="X1" gate="G$1" pin="4"/>
 <wire x1="157.48" y1="142.24" x2="147.32" y2="142.24" width="0.1524" layer="91"/>
@@ -14024,7 +14119,7 @@ MEM2051-00-195-00-A</text>
 <label x="129.54" y="203.2" size="0.8128" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="IOW_V" class="0">
+<net name="IOW_V" class="2">
 <segment>
 <pinref part="R100" gate="G$1" pin="1"/>
 <wire x1="254" y1="215.9" x2="254" y2="210.82" width="0.1524" layer="91"/>
@@ -14041,7 +14136,7 @@ MEM2051-00-195-00-A</text>
 <label x="248.92" y="215.9" size="1.016" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="IOE_V" class="0">
+<net name="IOE_V" class="2">
 <segment>
 <wire x1="340.36" y1="210.82" x2="340.36" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="R104" gate="G$1" pin="1"/>
@@ -14125,7 +14220,7 @@ MEM2051-00-195-00-A</text>
 <junction x="50.8" y="190.5"/>
 </segment>
 </net>
-<net name="VCCIO" class="0">
+<net name="VCCIO" class="2">
 <segment>
 <pinref part="U25" gate="A" pin="SREF"/>
 <wire x1="58.42" y1="200.66" x2="55.88" y2="200.66" width="0.1524" layer="91"/>
@@ -14143,7 +14238,7 @@ MEM2051-00-195-00-A</text>
 <pinref part="VCC3" gate="G$1" pin="VCCIO"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="R94" gate="G$1" pin="1"/>
 <wire x1="91.44" y1="210.82" x2="91.44" y2="215.9" width="0.1524" layer="91"/>
@@ -14411,7 +14506,7 @@ MEM2051-00-195-00-A</text>
 <label x="243.84" y="132.08" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$3" class="0">
+<net name="N$3" class="2">
 <segment>
 <pinref part="R122" gate="G$1" pin="1"/>
 <pinref part="R123" gate="G$1" pin="1"/>
@@ -14443,7 +14538,7 @@ MEM2051-00-195-00-A</text>
 <junction x="132.08" y="66.04"/>
 </segment>
 </net>
-<net name="B_BUS_EN" class="2">
+<net name="B_BUS_EN" class="0">
 <segment>
 <pinref part="U27" gate="G$1" pin="EN2"/>
 <wire x1="139.7" y1="205.74" x2="137.16" y2="205.74" width="0.1524" layer="91"/>
@@ -14836,7 +14931,7 @@ Licensed under CERN OHL v.1.2</text>
 <busses>
 </busses>
 <nets>
-<net name="CSO_NW_V" class="0">
+<net name="CSO_NW_V" class="2">
 <segment>
 <pinref part="CNW" gate="A" pin="VOUT"/>
 <wire x1="99.06" y1="220.98" x2="106.68" y2="220.98" width="0.1524" layer="91"/>
@@ -14847,7 +14942,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="111.76" y="220.98" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="RFW_V" class="0">
+<net name="RFW_V" class="2">
 <segment>
 <pinref part="U16" gate="A" pin="SENSE1-"/>
 <wire x1="68.58" y1="60.96" x2="45.72" y2="60.96" width="0.1524" layer="91"/>
@@ -14859,7 +14954,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="45.72" y="73.66" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="IOW_V" class="0">
+<net name="IOW_V" class="2">
 <segment>
 <pinref part="U16" gate="A" pin="SENSE2-"/>
 <wire x1="68.58" y1="53.34" x2="58.42" y2="53.34" width="0.1524" layer="91"/>
@@ -14871,7 +14966,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="58.42" y="43.18" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="CSO_SE_V" class="0">
+<net name="CSO_SE_V" class="2">
 <segment>
 <wire x1="215.9" y1="220.98" x2="223.52" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="C80" gate="G$1" pin="1"/>
@@ -14882,7 +14977,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="228.6" y="220.98" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="RFE_V" class="0">
+<net name="RFE_V" class="2">
 <segment>
 <pinref part="U21" gate="A" pin="SENSE1-"/>
 <wire x1="185.42" y1="60.96" x2="162.56" y2="60.96" width="0.1524" layer="91"/>
@@ -14894,7 +14989,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="162.56" y="73.66" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="IOE_V" class="0">
+<net name="IOE_V" class="2">
 <segment>
 <pinref part="U21" gate="A" pin="SENSE2-"/>
 <wire x1="185.42" y1="53.34" x2="175.26" y2="53.34" width="0.1524" layer="91"/>
@@ -15108,7 +15203,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="GND191" gate="1" pin="GND"/>
 </segment>
 </net>
-<net name="BETA_5V'" class="0">
+<net name="BETA_5V'" class="2">
 <segment>
 <pinref part="C78" gate="G$1" pin="1"/>
 <wire x1="60.96" y1="213.36" x2="60.96" y2="220.98" width="0.1524" layer="91"/>
@@ -15162,28 +15257,6 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="170.18" y1="132.08" x2="165.1" y2="132.08" width="0.1524" layer="91"/>
 <junction x="170.18" y="132.08"/>
 <label x="165.1" y="132.08" size="0.8128" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="CNW_PG" class="0">
-<segment>
-<pinref part="CNW" gate="A" pin="ADJ/BYP"/>
-<wire x1="99.06" y1="215.9" x2="101.6" y2="215.9" width="0.1524" layer="91"/>
-<pinref part="C76" gate="G$1" pin="1"/>
-<wire x1="101.6" y1="215.9" x2="101.6" y2="213.36" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="215.9" x2="111.76" y2="215.9" width="0.1524" layer="91"/>
-<junction x="101.6" y="215.9"/>
-<label x="111.76" y="215.9" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="CSE_PG" class="0">
-<segment>
-<wire x1="215.9" y1="215.9" x2="218.44" y2="215.9" width="0.1524" layer="91"/>
-<pinref part="C79" gate="G$1" pin="1"/>
-<wire x1="218.44" y1="215.9" x2="218.44" y2="213.36" width="0.1524" layer="91"/>
-<pinref part="CSE" gate="A" pin="ADJ/BYP"/>
-<wire x1="218.44" y1="215.9" x2="228.6" y2="215.9" width="0.1524" layer="91"/>
-<junction x="218.44" y="215.9"/>
-<label x="228.6" y="215.9" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="CNW_EN" class="0">
@@ -15510,7 +15583,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="294.64" y="81.28" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="U21" gate="A" pin="VDD"/>
 <wire x1="205.74" y1="71.12" x2="205.74" y2="73.66" width="0.1524" layer="91"/>
@@ -15544,6 +15617,22 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C89" gate="G$1" pin="1"/>
 <wire x1="345.44" y1="93.98" x2="345.44" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="P+39" gate="VCC" pin="VCC"/>
+</segment>
+</net>
+<net name="CSE_BYP" class="0">
+<segment>
+<wire x1="215.9" y1="215.9" x2="218.44" y2="215.9" width="0.1524" layer="91"/>
+<pinref part="C79" gate="G$1" pin="1"/>
+<wire x1="218.44" y1="215.9" x2="218.44" y2="213.36" width="0.1524" layer="91"/>
+<pinref part="CSE" gate="A" pin="ADJ/BYP"/>
+</segment>
+</net>
+<net name="CNW_BYP" class="0">
+<segment>
+<pinref part="CNW" gate="A" pin="ADJ/BYP"/>
+<wire x1="99.06" y1="215.9" x2="101.6" y2="215.9" width="0.1524" layer="91"/>
+<pinref part="C76" gate="G$1" pin="1"/>
+<wire x1="101.6" y1="215.9" x2="101.6" y2="213.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -15863,7 +15952,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="43.18" y1="96.52" x2="43.18" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="BETA_5V'" class="0">
+<net name="BETA_5V'" class="2">
 <segment>
 <pinref part="C33" gate="G$1" pin="1"/>
 <wire x1="55.88" y1="180.34" x2="55.88" y2="187.96" width="0.1524" layer="91"/>
@@ -15901,14 +15990,14 @@ Licensed under CERN OHL v.1.2</text>
 <label x="165.1" y="149.86" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N_VE" class="0">
+<net name="N_VE" class="2">
 <segment>
 <wire x1="327.66" y1="157.48" x2="327.66" y2="152.4" width="0.1524" layer="91"/>
 <label x="327.66" y="152.4" size="1.016" layer="95" rot="MR270" xref="yes"/>
 <pinref part="PWR-NE" gate="G$1" pin="3"/>
 </segment>
 </net>
-<net name="N_VN" class="0">
+<net name="N_VN" class="2">
 <segment>
 <wire x1="325.12" y1="157.48" x2="325.12" y2="152.4" width="0.1524" layer="91"/>
 <label x="325.12" y="152.4" size="1.016" layer="95" rot="MR270" xref="yes"/>
@@ -15963,14 +16052,14 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="U8" gate="G$1" pin="GPB2"/>
 </segment>
 </net>
-<net name="S_VW" class="0">
+<net name="S_VW" class="2">
 <segment>
 <wire x1="292.1" y1="104.14" x2="292.1" y2="109.22" width="0.1524" layer="91"/>
 <label x="292.1" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
 <pinref part="PWR-SW" gate="G$1" pin="3"/>
 </segment>
 </net>
-<net name="S_VS" class="0">
+<net name="S_VS" class="2">
 <segment>
 <wire x1="294.64" y1="104.14" x2="294.64" y2="109.22" width="0.1524" layer="91"/>
 <label x="294.64" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
@@ -16023,7 +16112,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="U8" gate="G$1" pin="ADDR"/>
 </segment>
 </net>
-<net name="W_I2C_V" class="0">
+<net name="W_I2C_V" class="2">
 <segment>
 <wire x1="289.56" y1="93.98" x2="289.56" y2="88.9" width="0.1524" layer="91"/>
 <label x="289.56" y="88.9" size="1.016" layer="95" rot="R270" xref="yes"/>
@@ -16039,7 +16128,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="226.06" y="185.42" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="JTAG_V" class="0">
+<net name="JTAG_V" class="2">
 <segment>
 <wire x1="287.02" y1="93.98" x2="287.02" y2="88.9" width="0.1524" layer="91"/>
 <label x="287.02" y="88.9" size="1.016" layer="95" rot="R270" xref="yes"/>
@@ -16055,7 +16144,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="226.06" y="187.96" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="S_SPI_V" class="0">
+<net name="S_SPI_V" class="2">
 <segment>
 <wire x1="289.56" y1="104.14" x2="289.56" y2="109.22" width="0.1524" layer="91"/>
 <label x="289.56" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
@@ -16071,7 +16160,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="226.06" y="147.32" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="S_I2C_V" class="0">
+<net name="S_I2C_V" class="2">
 <segment>
 <wire x1="287.02" y1="104.14" x2="287.02" y2="109.22" width="0.1524" layer="91"/>
 <label x="287.02" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
@@ -16087,7 +16176,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="226.06" y="149.86" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="E_SPI_V" class="0">
+<net name="E_SPI_V" class="2">
 <segment>
 <wire x1="332.74" y1="167.64" x2="332.74" y2="172.72" width="0.1524" layer="91"/>
 <label x="332.74" y="172.72" size="1.016" layer="95" rot="R90" xref="yes"/>
@@ -16103,7 +16192,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="111.76" y="187.96" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="E_I2C_V" class="0">
+<net name="E_I2C_V" class="2">
 <segment>
 <wire x1="330.2" y1="167.64" x2="330.2" y2="172.72" width="0.1524" layer="91"/>
 <label x="330.2" y="172.72" size="1.016" layer="95" rot="R90" xref="yes"/>
@@ -16119,7 +16208,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="111.76" y="185.42" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N_SPI_V" class="0">
+<net name="N_SPI_V" class="2">
 <segment>
 <wire x1="330.2" y1="157.48" x2="330.2" y2="152.4" width="0.1524" layer="91"/>
 <label x="330.2" y="152.4" size="1.016" layer="95" rot="MR270" xref="yes"/>
@@ -16135,7 +16224,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="111.76" y="147.32" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N_I2C_V" class="0">
+<net name="N_I2C_V" class="2">
 <segment>
 <wire x1="332.74" y1="157.48" x2="332.74" y2="152.4" width="0.1524" layer="91"/>
 <label x="332.74" y="152.4" size="1.016" layer="95" rot="MR270" xref="yes"/>
@@ -16207,7 +16296,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="96.52" y="86.36" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="R84" gate="G$1" pin="1"/>
 <wire x1="53.34" y1="104.14" x2="53.34" y2="106.68" width="0.1524" layer="91"/>
@@ -16249,84 +16338,84 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="43.18" y1="104.14" x2="43.18" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="W_VW" class="0">
+<net name="W_VW" class="2">
 <segment>
 <wire x1="292.1" y1="157.48" x2="292.1" y2="152.4" width="0.1524" layer="91"/>
 <label x="292.1" y="152.4" size="1.016" layer="95" rot="R270" xref="yes"/>
 <pinref part="PWR-NW" gate="G$1" pin="4"/>
 </segment>
 </net>
-<net name="N_VW" class="0">
+<net name="N_VW" class="2">
 <segment>
 <wire x1="294.64" y1="157.48" x2="294.64" y2="152.4" width="0.1524" layer="91"/>
 <label x="294.64" y="152.4" size="1.016" layer="95" rot="R270" xref="yes"/>
 <pinref part="PWR-NW" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="RFW_V" class="0">
+<net name="RFW_V" class="2">
 <segment>
 <wire x1="287.02" y1="167.64" x2="287.02" y2="172.72" width="0.1524" layer="91"/>
 <label x="287.02" y="172.72" size="1.016" layer="95" rot="R90" xref="yes"/>
 <pinref part="PWR-NW" gate="G$1" pin="7"/>
 </segment>
 </net>
-<net name="IOW_V" class="0">
+<net name="IOW_V" class="2">
 <segment>
 <wire x1="289.56" y1="167.64" x2="289.56" y2="172.72" width="0.1524" layer="91"/>
 <label x="289.56" y="172.72" size="1.016" layer="95" rot="R90" xref="yes"/>
 <pinref part="PWR-NW" gate="G$1" pin="5"/>
 </segment>
 </net>
-<net name="E_VE" class="0">
+<net name="E_VE" class="2">
 <segment>
 <wire x1="327.66" y1="104.14" x2="327.66" y2="109.22" width="0.1524" layer="91"/>
 <label x="327.66" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
 <pinref part="PWR-SE" gate="G$1" pin="4"/>
 </segment>
 </net>
-<net name="S_VE" class="0">
+<net name="S_VE" class="2">
 <segment>
 <wire x1="325.12" y1="104.14" x2="325.12" y2="109.22" width="0.1524" layer="91"/>
 <label x="325.12" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
 <pinref part="PWR-SE" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="RFE_V" class="0">
+<net name="RFE_V" class="2">
 <segment>
 <wire x1="332.74" y1="93.98" x2="332.74" y2="88.9" width="0.1524" layer="91"/>
 <label x="332.74" y="88.9" size="1.016" layer="95" rot="R270" xref="yes"/>
 <pinref part="PWR-SE" gate="G$1" pin="7"/>
 </segment>
 </net>
-<net name="IOE_V" class="0">
+<net name="IOE_V" class="2">
 <segment>
 <wire x1="330.2" y1="93.98" x2="330.2" y2="88.9" width="0.1524" layer="91"/>
 <label x="330.2" y="88.9" size="1.016" layer="95" rot="R270" xref="yes"/>
 <pinref part="PWR-SE" gate="G$1" pin="5"/>
 </segment>
 </net>
-<net name="CSO_SE_V" class="0">
+<net name="CSO_SE_V" class="2">
 <segment>
 <pinref part="PWR-SE" gate="G$1" pin="6"/>
 <wire x1="330.2" y1="104.14" x2="330.2" y2="109.22" width="0.1524" layer="91"/>
 <label x="330.2" y="109.22" size="1.016" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="CSO_NW_V" class="0">
+<net name="CSO_NW_V" class="2">
 <segment>
 <pinref part="PWR-NW" gate="G$1" pin="6"/>
 <wire x1="289.56" y1="157.48" x2="289.56" y2="152.4" width="0.1524" layer="91"/>
 <label x="289.56" y="152.4" size="1.016" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="RFAB_W_V" class="0">
+<net name="RFAB_W_V" class="2">
 <segment>
 <pinref part="PWR-NW" gate="G$1" pin="8"/>
 <wire x1="287.02" y1="157.48" x2="287.02" y2="152.4" width="0.1524" layer="91"/>
 <label x="287.02" y="152.4" size="1.016" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="RFAB_E_V" class="0">
+<net name="RFAB_E_V" class="2">
 <segment>
 <pinref part="PWR-SE" gate="G$1" pin="8"/>
 <wire x1="332.74" y1="104.14" x2="332.74" y2="109.22" width="0.1524" layer="91"/>
@@ -16389,7 +16478,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="96.52" y="55.88" size="0.8128" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="B_BUS_EN" class="2">
+<net name="B_BUS_EN" class="0">
 <segment>
 <pinref part="U9" gate="G$1" pin="GPB7"/>
 <wire x1="91.44" y1="53.34" x2="96.52" y2="53.34" width="0.1524" layer="91"/>
@@ -17234,7 +17323,7 @@ Licensed under CERN OHL v.1.2</text>
 <wire x1="289.56" y1="162.56" x2="289.56" y2="160.02" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$34" class="0">
+<net name="N$34" class="2">
 <segment>
 <pinref part="WW" gate="A" pin="VOUT"/>
 <wire x1="93.98" y1="218.44" x2="96.52" y2="218.44" width="0.1524" layer="91"/>
@@ -17274,7 +17363,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C14" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="BETA_5V'" class="0">
+<net name="BETA_5V'" class="2">
 <segment>
 <pinref part="WW" gate="A" pin="VIN"/>
 <wire x1="58.42" y1="218.44" x2="48.26" y2="218.44" width="0.1524" layer="91"/>
@@ -17348,7 +17437,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="162.56" y="73.66" size="0.8128" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="W_VW'" class="0">
+<net name="W_VW'" class="2">
 <segment>
 <pinref part="L1" gate="G$1" pin="2"/>
 <wire x1="121.92" y1="218.44" x2="124.46" y2="218.44" width="0.1524" layer="91"/>
@@ -17901,7 +17990,7 @@ Licensed under CERN OHL v.1.2</text>
 <junction x="299.72" y="137.16"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="R88" gate="G$1" pin="1"/>
 <wire x1="299.72" y1="170.18" x2="299.72" y2="172.72" width="0.1524" layer="91"/>
@@ -18300,7 +18389,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="R77" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="W_VW" class="0">
+<net name="W_VW" class="2">
 <segment>
 <pinref part="U18" gate="A" pin="SENSE1-"/>
 <wire x1="76.2" y1="180.34" x2="53.34" y2="180.34" width="0.1524" layer="91"/>
@@ -18312,7 +18401,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="53.34" y="193.04" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="W_VW'" class="0">
+<net name="W_VW'" class="2">
 <segment>
 <pinref part="R51" gate="G$1" pin="1"/>
 <wire x1="63.5" y1="187.96" x2="66.04" y2="187.96" width="0.1524" layer="91"/>
@@ -18336,7 +18425,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="53.34" y="162.56" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N_VW" class="0">
+<net name="N_VW" class="2">
 <segment>
 <pinref part="U18" gate="A" pin="SENSE2-"/>
 <wire x1="76.2" y1="172.72" x2="66.04" y2="172.72" width="0.1524" layer="91"/>
@@ -18348,7 +18437,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="66.04" y="162.56" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N_VN" class="0">
+<net name="N_VN" class="2">
 <segment>
 <pinref part="U20" gate="A" pin="SENSE1-"/>
 <wire x1="175.26" y1="180.34" x2="152.4" y2="180.34" width="0.1524" layer="91"/>
@@ -18384,7 +18473,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="152.4" y="162.56" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N_VE" class="0">
+<net name="N_VE" class="2">
 <segment>
 <pinref part="U20" gate="A" pin="SENSE2-"/>
 <wire x1="175.26" y1="172.72" x2="165.1" y2="172.72" width="0.1524" layer="91"/>
@@ -18396,7 +18485,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="165.1" y="162.56" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="E_VE" class="0">
+<net name="E_VE" class="2">
 <segment>
 <pinref part="U19" gate="A" pin="SENSE1-"/>
 <wire x1="76.2" y1="93.98" x2="53.34" y2="93.98" width="0.1524" layer="91"/>
@@ -18432,7 +18521,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="53.34" y="76.2" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="S_VE" class="0">
+<net name="S_VE" class="2">
 <segment>
 <pinref part="U19" gate="A" pin="SENSE2-"/>
 <wire x1="76.2" y1="86.36" x2="66.04" y2="86.36" width="0.1524" layer="91"/>
@@ -18444,7 +18533,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="66.04" y="76.2" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="S_VS" class="0">
+<net name="S_VS" class="2">
 <segment>
 <pinref part="U17" gate="A" pin="SENSE1-"/>
 <wire x1="175.26" y1="93.98" x2="152.4" y2="93.98" width="0.1524" layer="91"/>
@@ -18480,7 +18569,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="152.4" y="76.2" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="S_VW" class="0">
+<net name="S_VW" class="2">
 <segment>
 <pinref part="U17" gate="A" pin="SENSE2-"/>
 <wire x1="175.26" y1="86.36" x2="165.1" y2="86.36" width="0.1524" layer="91"/>
@@ -18492,7 +18581,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="165.1" y="76.2" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="U20" gate="A" pin="VDD"/>
 <wire x1="195.58" y1="190.5" x2="195.58" y2="193.04" width="0.1524" layer="91"/>
@@ -18604,7 +18693,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="220.98" y="91.44" size="0.8128" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VCCO_34" class="0">
+<net name="VCCO_34" class="2">
 <segment>
 <pinref part="U23" gate="A" pin="SENSE2-"/>
 <wire x1="274.32" y1="86.36" x2="264.16" y2="86.36" width="0.1524" layer="91"/>
@@ -18616,7 +18705,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="264.16" y="76.2" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="VCCIO" class="0">
+<net name="VCCIO" class="2">
 <segment>
 <pinref part="R62" gate="G$1" pin="1"/>
 <wire x1="254" y1="81.28" x2="251.46" y2="81.28" width="0.1524" layer="91"/>
@@ -18658,7 +18747,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="251.46" y="162.56" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="VCCO_35" class="0">
+<net name="VCCO_35" class="2">
 <segment>
 <pinref part="U24" gate="A" pin="SENSE1-"/>
 <wire x1="274.32" y1="180.34" x2="251.46" y2="180.34" width="0.1524" layer="91"/>
@@ -18670,7 +18759,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="251.46" y="193.04" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="VCCO_13" class="1">
+<net name="VCCO_13" class="2">
 <segment>
 <pinref part="U24" gate="A" pin="SENSE2-"/>
 <wire x1="274.32" y1="172.72" x2="264.16" y2="172.72" width="0.1524" layer="91"/>
@@ -19153,7 +19242,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C50" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="PCIE_S_V'" class="0">
+<net name="PCIE_S_V'" class="2">
 <segment>
 <pinref part="L9" gate="G$1" pin="2"/>
 <wire x1="116.84" y1="213.36" x2="119.38" y2="213.36" width="0.1524" layer="91"/>
@@ -19204,7 +19293,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C53" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="CSO_S_V'" class="0">
+<net name="CSO_S_V'" class="2">
 <segment>
 <pinref part="L10" gate="G$1" pin="2"/>
 <wire x1="226.06" y1="213.36" x2="228.6" y2="213.36" width="0.1524" layer="91"/>
@@ -19255,7 +19344,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C56" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="VCCIO" class="0">
+<net name="VCCIO" class="2">
 <segment>
 <pinref part="L11" gate="G$1" pin="2"/>
 <wire x1="116.84" y1="144.78" x2="119.38" y2="144.78" width="0.1524" layer="91"/>
@@ -19296,7 +19385,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C59" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="CSO_N_V'" class="0">
+<net name="CSO_N_V'" class="2">
 <segment>
 <pinref part="L12" gate="G$1" pin="2"/>
 <wire x1="116.84" y1="76.2" x2="119.38" y2="76.2" width="0.1524" layer="91"/>
@@ -19347,7 +19436,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="C62" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="PCIE_N_V'" class="0">
+<net name="PCIE_N_V'" class="2">
 <segment>
 <pinref part="L13" gate="G$1" pin="2"/>
 <wire x1="228.6" y1="76.2" x2="231.14" y2="76.2" width="0.1524" layer="91"/>
@@ -19555,7 +19644,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="R83" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="CSO_NE_V" class="0">
+<net name="CSO_NE_V" class="2">
 <segment>
 <pinref part="U14" gate="A" pin="SENSE1-"/>
 <wire x1="299.72" y1="210.82" x2="276.86" y2="210.82" width="0.1524" layer="91"/>
@@ -19567,7 +19656,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="276.86" y="223.52" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_N_V" class="0">
+<net name="PCIE_N_V" class="2">
 <segment>
 <pinref part="U14" gate="A" pin="SENSE2-"/>
 <wire x1="299.72" y1="203.2" x2="289.56" y2="203.2" width="0.1524" layer="91"/>
@@ -19579,7 +19668,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="289.56" y="193.04" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="CSO_SW_V" class="0">
+<net name="CSO_SW_V" class="2">
 <segment>
 <pinref part="U15" gate="A" pin="SENSE1-"/>
 <wire x1="299.72" y1="73.66" x2="276.86" y2="73.66" width="0.1524" layer="91"/>
@@ -19591,7 +19680,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="276.86" y="86.36" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="PCIE_S_V" class="0">
+<net name="PCIE_S_V" class="2">
 <segment>
 <pinref part="U15" gate="A" pin="SENSE2-"/>
 <wire x1="299.72" y1="66.04" x2="289.56" y2="66.04" width="0.1524" layer="91"/>
@@ -19611,7 +19700,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="R82" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="ZED_5V'" class="0">
+<net name="ZED_5V'" class="2">
 <segment>
 <pinref part="U22" gate="A" pin="SENSE1-"/>
 <wire x1="299.72" y1="142.24" x2="276.86" y2="142.24" width="0.1524" layer="91"/>
@@ -19623,7 +19712,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="276.86" y="154.94" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="ZED_5V" class="0">
+<net name="ZED_5V" class="2">
 <segment>
 <pinref part="R69" gate="G$1" pin="1"/>
 <wire x1="287.02" y1="149.86" x2="289.56" y2="149.86" width="0.1524" layer="91"/>
@@ -19635,7 +19724,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="289.56" y="154.94" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="BETA_5V" class="0">
+<net name="BETA_5V" class="2">
 <segment>
 <pinref part="R70" gate="G$1" pin="1"/>
 <wire x1="279.4" y1="129.54" x2="276.86" y2="129.54" width="0.1524" layer="91"/>
@@ -19647,7 +19736,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="276.86" y="124.46" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="BETA_5V'" class="0">
+<net name="BETA_5V'" class="2">
 <segment>
 <pinref part="MXS" gate="A" pin="VIN"/>
 <wire x1="60.96" y1="213.36" x2="50.8" y2="213.36" width="0.1524" layer="91"/>
@@ -19704,7 +19793,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="289.56" y="124.46" size="0.8128" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="2">
 <segment>
 <pinref part="R90" gate="G$1" pin="1"/>
 <wire x1="165.1" y1="154.94" x2="165.1" y2="157.48" width="0.1524" layer="91"/>

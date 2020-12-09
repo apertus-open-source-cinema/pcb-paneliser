@@ -275,6 +275,7 @@ def main():
 
     board_info_doc.saveas(TEMP_DIR + 'board_info.dxf')
     dxf_file = gerberex.read(TEMP_DIR + 'board_info.dxf')
+    dxf_file.width = 0.2
     silkscreen_top_layer_context.merge(dxf_file)
 
     copper_layer_top_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")

@@ -171,7 +171,7 @@ def place_panel_label(x, y):
 
 def place_subpanel_label(x, y):
     font.normalize_rendering(2)
-    label_text = "Mixed Subpanel - Version 0.41 - " + today.strftime("%d.%m.%Y") + " (DD.MM.YYYY)"
+    label_text = "AXIOM Beta Mixed Subpanel - Version 0.41 - Date: " + today.strftime("%d.%m.%Y") + " (DD.MM.YYYY)"
     draw_text(label_text, x, y, True)
 
 

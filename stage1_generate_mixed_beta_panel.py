@@ -171,7 +171,7 @@ def place_panel_label(x, y):
 
 def place_subpanel_label(x, y):
     font.normalize_rendering(2)
-    label_text = "AXIOM Beta Mixed Subpanel - Version 0.41 - Date: " + today.strftime("%d.%m.%Y") + " (DD.MM.YYYY)"
+    label_text = "AXIOM Beta Mixed Subpanel - Version 0.42 - Date: " + today.strftime("%d.%m.%Y") + " (DD.MM.YYYY)"
     draw_text(label_text, x, y, True)
 
 
@@ -243,7 +243,7 @@ def main():
     generate_outer_frame(board_cutout_msp, panel_width, panel_height)
 
     add_pcb("axiom_beta_sensor_cmv12000_tht_v0.16_r1.7c", 0, 0)
-    add_pcb("axiom_beta_interface_dummy_v0.13_r1.5", 57.15 + cutout_width, 0)
+    add_pcb("axiom_beta_interface_dummy_v0.13_r1.6", 57.15 + cutout_width, 0)
     add_pcb("axiom_beta_main_board_v0.38_r1.1", 0, 57.15 + cutout_width)
     add_pcb("axiom_beta_power_board_v0.38_r1.1", 57.15 + cutout_width, 57.15 + cutout_width)
 

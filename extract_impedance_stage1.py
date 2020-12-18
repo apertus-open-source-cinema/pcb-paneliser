@@ -30,8 +30,8 @@ def extract_impedance(filename):
         file.write(ET.tostring(tree.getroot()).decode("utf-8"))
 
 
-extract_impedance("axiom_beta_sensor_cmv12000_tht_v0.16_r1.6c")
-extract_impedance("axiom_beta_interface_dummy_v0.13_r1.4")
-extract_impedance("axiom_beta_main_board_v0.37_r1.2")
-extract_impedance("axiom_beta_power_board_v0.37_r1.3")
+extract_impedance("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c")
+extract_impedance("axiom_beta_interface_dummy_v0.13_r1.6")
+extract_impedance("axiom_beta_main_board_v0.38_r1.2")
+extract_impedance("axiom_beta_power_board_v0.38_r1.2")
 extract_impedance("test_strip_v0.1_r1.2")

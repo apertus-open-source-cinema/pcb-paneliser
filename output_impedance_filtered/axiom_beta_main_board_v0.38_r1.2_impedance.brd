@@ -4,7 +4,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="16" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="17" fill="1" visible="yes" active="yes"/>
@@ -3130,6 +3130,19 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="10.5524" y1="25.248584375" x2="10.5524" y2="14.05615625" width="0.1524" layer="1"/>
 <wire x1="10.5524" y1="14.05615625" x2="10.7383875" y2="13.60714375" width="0.1524" layer="1" curve="45"/>
 <wire x1="10.7383875" y1="13.60714375" x2="17.00714375" y2="7.3383875" width="0.1524" layer="1"/>
+</signal>
+<signal name="JX1_14_N" class="1">
+<wire x1="-2" y1="24.2258" x2="-2" y2="25.654" width="0.1524" layer="16"/>
+<wire x1="-2" y1="25.654" x2="-1.86399375" y2="25.51799375" width="0.1524" layer="1"/>
+<wire x1="-1.86399375" y1="25.51799375" x2="-1.7524" y2="25.248584375" width="0.1524" layer="1" curve="-45.00047"/>
+<wire x1="-18.02320625" y1="3.17560625" x2="-17.96718125" y2="3.1524" width="0.1524" layer="1" curve="45"/>
+<wire x1="-17.96718125" y1="3.1524" x2="-17.64615625" y2="3.1524" width="0.1524" layer="1"/>
+<wire x1="-18.02320625" y1="3.17560625" x2="-18.202809375" y2="3.25" width="0.1524" layer="1" curve="44.999295"/>
+<wire x1="-18.202809375" y1="3.25" x2="-19.175" y2="3.25" width="0.1524" layer="1"/>
+<wire x1="-17.64615625" y1="3.1524" x2="-17.19714375" y2="3.3383875" width="0.1524" layer="1" curve="45"/>
+<wire x1="-17.19714375" y1="3.3383875" x2="-1.9383875" y2="18.59714375" width="0.1524" layer="1"/>
+<wire x1="-1.9383875" y1="18.59714375" x2="-1.7524" y2="19.04615625" width="0.1524" layer="1" curve="45"/>
+<wire x1="-1.7524" y1="19.04615625" x2="-1.7524" y2="25.248584375" width="0.1524" layer="1"/>
 </signal>
 <signal name="JX2_15_P" class="1">
 <wire x1="-4.4" y1="-24.2258" x2="-4.4" y2="-25.654" width="0.1524" layer="16"/>

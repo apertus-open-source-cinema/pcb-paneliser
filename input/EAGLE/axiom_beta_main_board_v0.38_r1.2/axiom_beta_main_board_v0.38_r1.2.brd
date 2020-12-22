@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="16" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="17" fill="1" visible="yes" active="yes"/>
@@ -4928,7 +4928,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="10.5524" y1="14.05615625" x2="10.7383875" y2="13.60714375" width="0.1524" layer="1" curve="45"/>
 <wire x1="10.7383875" y1="13.60714375" x2="17.00714375" y2="7.3383875" width="0.1524" layer="1"/>
 </signal>
-<signal name="JX1_14_N">
+<signal name="JX1_14_N" class="1">
 <contactref element="ZED1" pad="55"/>
 <wire x1="-2" y1="24.2258" x2="-2" y2="25.654" width="0.1524" layer="16"/>
 <via x="-2" y="25.654" extent="1-16" drill="0.2032"/>

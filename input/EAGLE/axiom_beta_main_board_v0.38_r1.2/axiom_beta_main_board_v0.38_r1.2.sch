@@ -13070,7 +13070,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="210.82" y="213.36" size="0.8128" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="JX1_14_N" class="0">
+<net name="JX1_14_N" class="1">
 <segment>
 <wire x1="144.78" y1="213.36" x2="144.78" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="ZED1" gate="JX1_14" pin="_N"/>
@@ -13997,7 +13997,7 @@ Licensed under CERN OHL v.1.2</text>
 <pinref part="X-WEST" gate="G$1" pin="40"/>
 </segment>
 </net>
-<net name="JX1_14_N" class="0">
+<net name="JX1_14_N" class="1">
 <segment>
 <wire x1="40.64" y1="127" x2="50.8" y2="127" width="0.1524" layer="91"/>
 <label x="40.64" y="127" size="0.6096" layer="95" rot="MR0" xref="yes"/>

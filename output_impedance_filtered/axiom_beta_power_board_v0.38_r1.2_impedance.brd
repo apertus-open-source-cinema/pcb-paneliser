@@ -4,7 +4,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="25" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="12.5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="16" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="17" fill="1" visible="yes" active="yes"/>
@@ -32,8 +32,8 @@
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="11" fill="1" visible="yes" active="yes"/>
-<layer number="28" name="bValues" color="11" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="11" fill="1" visible="no" active="yes"/>
+<layer number="28" name="bValues" color="11" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
@@ -2865,27 +2865,6 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="NC$1" class="1">
 </signal>
 <signal name="NC$2" class="1">
-</signal>
-<signal name="A_BUS_EN" class="1">
-<wire x1="29.865" y1="7.665" x2="29.865" y2="8.3185" width="0.2032" layer="1"/>
-<wire x1="29.865" y1="8.3185" x2="29.611" y2="8.5725" width="0.2032" layer="1" curve="90"/>
-<wire x1="29.611" y1="8.5725" x2="27.94" y2="8.5725" width="0.2032" layer="1"/>
-<wire x1="26.8605" y1="6.190315625" x2="26.8605" y2="8.1915" width="0.2032" layer="2"/>
-<wire x1="26.8605" y1="8.1915" x2="27.2415" y2="8.5725" width="0.2032" layer="2" curve="-90"/>
-<wire x1="27.2415" y1="8.5725" x2="27.94" y2="8.5725" width="0.2032" layer="2"/>
-<wire x1="26.8605" y1="6.190315625" x2="26.74890625" y2="5.92090625" width="0.2032" layer="2" curve="-45.000332"/>
-<wire x1="26.74890625" y1="5.92090625" x2="25.57509375" y2="4.74709375" width="0.2032" layer="2"/>
-<wire x1="25.57509375" y1="4.74709375" x2="25.305684375" y2="4.6355" width="0.2032" layer="2" curve="-45.00047"/>
-<wire x1="25.305684375" y1="4.6355" x2="21.183315625" y2="4.6355" width="0.2032" layer="2"/>
-<wire x1="21.183315625" y1="4.6355" x2="20.91390625" y2="4.52390625" width="0.2032" layer="2" curve="45.000332"/>
-<wire x1="20.91390625" y1="4.52390625" x2="19.685" y2="3.295" width="0.2032" layer="2"/>
-<wire x1="18.706" y1="2.57" x2="18.706" y2="2.174" width="0.2032" layer="16"/>
-<wire x1="18.706" y1="2.174" x2="18.452" y2="1.92" width="0.2032" layer="16" curve="-90"/>
-<wire x1="18.452" y1="1.92" x2="17.42" y2="1.92" width="0.2032" layer="16"/>
-<wire x1="17.42" y1="2.57" x2="18.706" y2="2.57" width="0.2032" layer="16"/>
-<wire x1="19.685" y1="3.295" x2="19.07159375" y2="2.68159375" width="0.2032" layer="16"/>
-<wire x1="19.07159375" y1="2.68159375" x2="18.802184375" y2="2.57" width="0.2032" layer="16" curve="-45.00047"/>
-<wire x1="18.802184375" y1="2.57" x2="18.706" y2="2.57" width="0.2032" layer="16"/>
 </signal>
 </signals>
 <errors>

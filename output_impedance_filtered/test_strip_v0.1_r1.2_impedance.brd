@@ -499,26 +499,6 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="28.349396875" y1="2.87619375" x2="28.462990625" y2="2.9464" width="0.1524" layer="16" curve="-63.434949"/>
 <wire x1="27.4574" y1="3.3274" x2="27.4574" y2="3.414009375" width="0.1524" layer="16"/>
 </signal>
-<signal name="SIGB_P" class="1">
-<wire x1="8.255" y1="-0.875" x2="8.255" y2="3.175" width="0.1524" layer="16"/>
-<wire x1="8.255" y1="3.175" x2="7.62" y2="3.81" width="0.1524" layer="16" curve="90"/>
-<wire x1="7.62" y1="3.81" x2="-6.35" y2="3.81" width="0.1524" layer="16"/>
-<wire x1="-6.35" y1="3.81" x2="-6.985" y2="3.175" width="0.1524" layer="16" curve="90"/>
-<wire x1="-6.985" y1="3.175" x2="-6.985" y2="-0.875" width="0.1524" layer="16"/>
-</signal>
-<signal name="SIGB_N" class="1">
-<wire x1="-19.685" y1="-0.875" x2="-19.685" y2="3.175" width="0.1524" layer="16"/>
-<wire x1="-19.685" y1="3.175" x2="-20.32" y2="3.81" width="0.1524" layer="16" curve="90"/>
-<wire x1="-20.32" y1="3.81" x2="-25.4" y2="3.81" width="0.1524" layer="16"/>
-<wire x1="-25.4" y1="3.81" x2="-26.035" y2="4.445" width="0.1524" layer="16" curve="-90"/>
-<wire x1="-26.035" y1="4.445" x2="-25.4" y2="5.08" width="0.1524" layer="16" curve="-90"/>
-<wire x1="24.13" y1="5.08" x2="-25.4" y2="5.08" width="0.1524" layer="16"/>
-<wire x1="24.13" y1="5.08" x2="24.765" y2="4.445" width="0.1524" layer="16" curve="-90"/>
-<wire x1="24.765" y1="4.445" x2="24.13" y2="3.81" width="0.1524" layer="16" curve="-90"/>
-<wire x1="24.13" y1="3.81" x2="21.59" y2="3.81" width="0.1524" layer="16"/>
-<wire x1="21.59" y1="3.81" x2="20.955" y2="3.175" width="0.1524" layer="16" curve="90"/>
-<wire x1="20.955" y1="3.175" x2="20.955" y2="-0.875" width="0.1524" layer="16"/>
-</signal>
 </signals>
 <errors>
 <approved hash="19,1,790e7f3078027e3c"/>

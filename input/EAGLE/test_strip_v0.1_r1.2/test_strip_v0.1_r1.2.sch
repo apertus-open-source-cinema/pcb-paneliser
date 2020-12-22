@@ -425,14 +425,14 @@
 <pinref part="X4" gate="A" pin="1"/>
 </segment>
 </net>
-<net name="SIGB_P" class="1">
+<net name="SIGB_P" class="0">
 <segment>
 <pinref part="X5" gate="A" pin="1"/>
 <wire x1="30.48" y1="-22.86" x2="96.52" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="X7" gate="A" pin="1"/>
 </segment>
 </net>
-<net name="SIGB_N" class="1">
+<net name="SIGB_N" class="0">
 <segment>
 <pinref part="X6" gate="A" pin="1"/>
 <wire x1="30.48" y1="-33.02" x2="96.52" y2="-33.02" width="0.1524" layer="91"/>

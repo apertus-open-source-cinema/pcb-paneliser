@@ -1493,7 +1493,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="28.349396875" y1="2.87619375" x2="28.462990625" y2="2.9464" width="0.1524" layer="16" curve="-63.434949"/>
 <wire x1="27.4574" y1="3.3274" x2="27.4574" y2="3.414009375" width="0.1524" layer="16"/>
 </signal>
-<signal name="SIGB_P" class="1">
+<signal name="SIGB_P">
 <contactref element="X5" pad="1"/>
 <contactref element="X7" pad="1"/>
 <wire x1="8.255" y1="-0.875" x2="8.255" y2="3.175" width="0.1524" layer="16"/>
@@ -1516,7 +1516,7 @@ Please make sure your boards conform to these design rules.</description>
 <vertex x="8.89" y="-2.8575"/>
 </polygon>
 </signal>
-<signal name="SIGB_N" class="1">
+<signal name="SIGB_N">
 <contactref element="X6" pad="1"/>
 <contactref element="X8" pad="1"/>
 <wire x1="-19.685" y1="-0.875" x2="-19.685" y2="3.175" width="0.1524" layer="16"/>

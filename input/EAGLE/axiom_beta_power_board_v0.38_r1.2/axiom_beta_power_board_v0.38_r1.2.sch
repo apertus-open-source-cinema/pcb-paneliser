@@ -14551,7 +14551,7 @@ MEM2051-00-195-00-A</text>
 <label x="132.08" y="205.74" size="0.8128" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="A_BUS_EN" class="1">
+<net name="A_BUS_EN" class="0">
 <segment>
 <pinref part="U27" gate="G$1" pin="EN1"/>
 <wire x1="139.7" y1="213.36" x2="134.62" y2="213.36" width="0.1524" layer="91"/>
@@ -16472,7 +16472,7 @@ Licensed under CERN OHL v.1.2</text>
 <label x="210.82" y="78.74" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="A_BUS_EN" class="1">
+<net name="A_BUS_EN" class="0">
 <segment>
 <pinref part="U9" gate="G$1" pin="GPB6"/>
 <wire x1="91.44" y1="55.88" x2="96.52" y2="55.88" width="0.1524" layer="91"/>

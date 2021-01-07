@@ -30,12 +30,7 @@ def setup():
         os.makedirs(OUTPUT_DIR)
 
 
-def place_fiducial(x, y):
-    # Solder mask fiducial
-    fiducial = gerberex.read(TEMPLATE_DIR + "fiducial_2.30mm_dia_circle.gbr")
-    fiducial.to_metric()
-    fiducial.offset(x, y)
-    stencil_context.merge(fiducial)
+
 
 
 def main():
@@ -51,24 +46,13 @@ def main():
     cream_layer.to_metric()
     stencil_context.merge(cream_layer)
 
-    # Top fiducials
-    place_fiducial(2.5, 2.5)
-    place_fiducial(panel_width - 2.5, 2.5)
-    place_fiducial(2.5, panel_height - 2.5)
-    place_fiducial(panel_width - 2.5, panel_height - 2.5)
-
     # Bottom layer
-    offset = 170
+    offset = 210
     cream_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
     cream_layer.to_metric()
     cream_layer.offset(offset)
     stencil_context.merge(cream_layer)
 
-    # Bottom fiducials
-    place_fiducial(offset + 2.5, 2.5)
-    place_fiducial(offset + panel_width - 2.5, 2.5)
-    place_fiducial(offset + 2.5, panel_height - 2.5)
-    place_fiducial(offset + panel_width - 2.5, panel_height - 2.5)
 
     stencil_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.stencil.ger")
 

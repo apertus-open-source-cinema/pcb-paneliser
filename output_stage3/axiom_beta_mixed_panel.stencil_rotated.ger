@@ -6,7 +6,6 @@ G04 --End of header info--*
 %MOIN*%
 %FSLAX36Y36*%
 %IPPOS*%
-%IR270*%
 G04 --Define apertures--*
 %ADD10C,0.0024*%
 %ADD11C,0.0101*%

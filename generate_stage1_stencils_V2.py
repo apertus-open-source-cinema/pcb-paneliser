@@ -1,12 +1,15 @@
 
 # NOTES
-
+# =====
+#
 # export eagle CAM gerber: for top cream normally
 # export eagle CAM gerber: for top boardoutline normally
 # export eagle CAM gerber: for bottom cream "mirrored"
 # export eagle CAM gerber: for bottom boardoutline "mirrored" - thats important as its not the same result as boardoutline without flipping
-# rotate MB and PB CW (not CCW liek you would do for PCB generation) via script
+# rotate mirrored MB and PB layers CW and the non flipped MB and PB layers CCW via script: rotate_for_stencil.sh
 # run this script
+#
+# ====================================================
 
 import os
 import time

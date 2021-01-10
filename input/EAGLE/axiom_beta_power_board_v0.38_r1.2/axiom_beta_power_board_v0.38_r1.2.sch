@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="16" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="17" fill="1" visible="no" active="no"/>
@@ -10042,7 +10042,7 @@ Remark: SOT883B has the same footprint, package is lower</description>
 <variantdefs>
 <variantdef name="Beta"/>
 <variantdef name="Min"/>
-<variantdef name="Tele"/>
+<variantdef name="Tele" current="yes"/>
 </variantdefs>
 <classes>
 <class number="0" name="default" width="0.1524" drill="0.2032">
@@ -10056,17 +10056,13 @@ Remark: SOT883B has the same footprint, package is lower</description>
 </class>
 </classes>
 <parts>
-<part name="ZED" library="microzed" deviceset="µZ-FCI" device="-CONONLY" value="µZ-FCI-CONONLY">
-<variant name="Tele" populate="no"/>
-</part>
+<part name="ZED" library="microzed" deviceset="µZ-FCI" device="-CONONLY" value="µZ-FCI-CONONLY"/>
 <part name="FRAME5" library="frames" deviceset="A3L-LOC" device=""/>
 <part name="FRAME2" library="frames" deviceset="A3L-LOC" device=""/>
 <part name="FRAME3" library="frames" deviceset="A3L-LOC" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="BETA" library="microzed" deviceset="µZ-FCI" device="-SOCKET-NOHOLES-R" value="µZ-FCI-SOCKET-NOHOLES-R">
-<variant name="Tele" populate="no"/>
-</part>
+<part name="BETA" library="microzed" deviceset="µZ-FCI" device="-SOCKET-NOHOLES-R" value="µZ-FCI-SOCKET-NOHOLES-R"/>
 <part name="FRAME4" library="frames" deviceset="A3L-LOC" device=""/>
 <part name="GND19" library="supply" deviceset="GND" device=""/>
 <part name="GND20" library="supply" deviceset="GND" device=""/>

@@ -163,7 +163,7 @@ def main():
     add_pcb_bottom("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", 57.15 + cutout_width, 0)
     add_pcb_bottom("axiom_beta_interface_dummy_v0.13_r1.6", 0, 0)
     add_pcb_bottom("axiom_beta_main_board_v0.38_r1.2", 57.15 + cutout_width, 57.15 + cutout_width)
-    add_pcb_bottom("axiom_beta_power_board_v0.38_r1.2", 0, 57.15 + cutout_width)
+    add_pcb_bottom("axiom_beta_power_board_v0.38_r1.2b", 0, 57.15 + cutout_width)
 
     area = [0, 0, panel_width, panel_height]
 

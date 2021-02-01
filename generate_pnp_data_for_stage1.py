@@ -222,10 +222,10 @@ def main():
     if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
         generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
 
-    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", 7.5, 10 + 57.15, True)  # 7.5 + 57.15
-    get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + 10, 57.15 + 10, True)
-    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", 10 + 57.15, 7.5)
-    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", "_SB", 7.5, 7.5)
+    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", 5 + 2.54, 5 + 2.54 * 2 + 57.15, True)  # 7.5 + 57.15
+    get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + 5 + 2.54 * 2, 57.15 + 5 + 2.54 * 2, True)
+    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", 5 + 2.54 * 2 + 57.15, 5 + 2.54)
+    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", "_SB", 5 + 2.54, 5 + 2.54)
 
     print(tabulate(component_summary, headers=["Name", "Components (top)", "Components (bottom)"]))
 

@@ -1,8 +1,9 @@
 # IMPORTANT: Ensure that the export of .mnt and .mnb files from EAGLE  was done for "Tele" variant
 import csv
+import math
 import os
 import time
-from math import radians
+from math import radians, cos, sin
 from xml.etree import ElementTree
 
 import ezdxf
@@ -52,6 +53,12 @@ def setup():
     if not os.path.exists(TEMP_DIR):
         os.makedirs(TEMP_DIR)
 
+    if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
+        generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
+
+    if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
+        generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
+
 
 def get_board_dimensions(xml_root):
     dimensions = xml_root.findall(".//wire[@layer=\"20\"]")
@@ -83,6 +90,54 @@ def draw_text(text, x, y):
 
         components_top_msp.add_lwpolyline([(x1, y1), (x2, y2)],
                                           format='xy')
+
+
+first_pads = {}
+part_package = {}
+
+
+def load_pad_data(xml_root):
+    available_packages = dict()
+
+    element_list = xml_root.findall(".//element")
+    for item in element_list:
+        element_name = item.attrib["name"]
+        package_name = item.attrib["package"]
+        part_package[element_name] = package_name
+
+    package_list = xml_root.findall(".//package")
+    for item in package_list:
+        package_name = item.attrib["name"]
+
+        # Extract pad data, positions are offsets
+        smd_pad_list = dict()
+        via_pad_list = dict()
+
+        smd_list = item.findall("smd")
+        for smd in smd_list:
+            name = smd.attrib["name"]
+            if name != "1":
+                continue
+
+            x = smd.attrib['x']
+            y = smd.attrib['y']
+            first_pads[package_name] = (float(x), float(y))
+            # pad = get_smd_pad_info(pad, smd)
+            # pad_name = smd.attrib["name"]
+            # smd_pad_list[pad_name] = pad'''
+
+        pad_list = item.findall("pad")
+        for via in pad_list:
+            name = via.attrib["name"]
+            if name != "1":
+                continue
+
+            x = via.attrib['x']
+            y = via.attrib['y']
+            first_pads[package_name] = (float(x), float(y))
+
+        # package = Package(smd_pad_list, via_pad_list)
+        # available_packages[package_name] = package
 
 
 def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
@@ -125,6 +180,8 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
         components_bottom.append((name + suffix, x, y, int(rotation) % 360))
     component_summary.append(
             [pcb_name, len(components_top) - components_top_count, len(components_bottom) - components_bottom_count])
+
+    load_pad_data(xml_root)
     # print("{}: {} top components / {} bottom components".format(pcb_name, len(components_top), len(components_bottom)))
 
     '''def draw_component_positions():
@@ -141,30 +198,41 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
             components_bottom_msp.add_circle((x, y), 0.2)'''
 
 
-def draw_component_positions():
-    global components_top, components_bottom
-    components_top = []
-    components_bottom = []
+def draw_component_positions(filename, msp):
+    # Draw origin
+    msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.2)
+    msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.0)
 
     # Draw origin
-    components_top_msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.2)
-    components_top_msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.0)
+    # msp.add_circle((0.0, 0.0), 0.2)
+    # msp.add_circle((0.0, 0.0), 0.0)
 
-    # Draw origin
-    components_top_msp.add_circle((0.0, 0.0), 0.2)
-    components_top_msp.add_circle((0.0, 0.0), 0.0)
-
-    file_top = open(OUTPUT_DIR + "pnp_data_top.asc", "r")
-    offset_x, offset_y, *temp = file_top.readline().replace(',', '.').split('|')
-    file_top.readline()  # Skip empty line
-    for entry in file_top:
+    file = open(filename, 'r')
+    offset_x, offset_y, *temp = file.readline().replace(',', '.').split('|')
+    file.readline()  # Skip empty line
+    for entry in file:
         name, tele_id, x, y, rotation = entry.replace(',', '.').rstrip().split('|')
-        components_top_msp.add_lwpolyline([(0.0, 0.0), (0.0, 0.5)], format="xy").rotate_z(
+        msp.add_lwpolyline([(0.0, 0.0), (0.0, 0.5)], format="xy").rotate_z(
                 radians(int(rotation))).translate(float(x) + float(offset_x), float(y) + float(offset_y), 0)
-        components_top_msp.add_circle((float(x) + float(offset_x), float(y) + float(offset_y)), 0.2)
+        msp.add_circle((float(x) + float(offset_x), float(y) + float(offset_y)), 0.2)
         font.normalize_rendering(0.5)
         # draw_text(name, float(x) + float(offset_x), float(y) + float(offset_y))
-    file_bottom = open(OUTPUT_DIR + "pnp_data_bottom.asc", "r")
+
+        angle_rad = radians(int(rotation))
+
+        # for pad in first_pads:
+        name = name[:-3]
+        if name in part_package:
+            package = part_package[name]
+            if package in first_pads:
+                pad_position = first_pads[package]
+                pad_x = pad_position[0]
+                pad_y = pad_position[1]
+
+                rot_x = pad_x * math.cos(angle_rad) - pad_y * math.sin(angle_rad)
+                rot_y = pad_x * math.sin(angle_rad) + pad_y * math.cos(angle_rad)
+                msp.add_circle((rot_x + float(offset_x) + float(x),
+                                rot_y + float(offset_y) + float(y)), 0.1)
 
 
 def write_origin(file_top, file_bottom):
@@ -216,12 +284,6 @@ def main():
 
     setup()
 
-    if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
-        generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
-
-    if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
-        generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
-
     get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", 5 + 2.54, 5 + 2.54 * 2 + 57.15, True)  # 7.5 + 57.15
     get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + 5 + 2.54 * 2, 57.15 + 5 + 2.54 * 2, True)
     get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", 5 + 2.54 * 2 + 57.15, 5 + 2.54)
@@ -242,17 +304,20 @@ def main():
     file_bottom.flush()
     file_bottom.close()
 
-    draw_component_positions()
+    draw_component_positions(OUTPUT_DIR + "pnp_data_top.asc", components_top_msp)
+    draw_component_positions(OUTPUT_DIR + "pnp_data_bottom.asc", components_bottom_msp)
+
     components_top_doc.saveas(TEMP_DIR + "components_top.dxf")
     dxf = gerberex.read(TEMP_DIR + "components_top.dxf")
     dxf.width = 0.05
     component_context_top.merge(dxf)
     component_context_top.dump(OUTPUT_DIR + "component_position_top.ger")
 
-    # components_bottom_doc.saveas(TEMP_DIR + "components_bottom.dxf")
-    # dxf = gerberex.read(TEMP_DIR + "components_bottom.dxf")
-    # component_context_bottom.merge(dxf)
-    # component_context_bottom.dump(OUTPUT_DIR + "component_position_bottom.ger")
+    components_bottom_doc.saveas(TEMP_DIR + "components_bottom.dxf")
+    dxf = gerberex.read(TEMP_DIR + "components_bottom.dxf")
+    dxf.width = 0.05
+    component_context_bottom.merge(dxf)
+    component_context_bottom.dump(OUTPUT_DIR + "component_position_bottom.ger")
 
     end_time = time.time()
     elapsed_time = end_time - start_time

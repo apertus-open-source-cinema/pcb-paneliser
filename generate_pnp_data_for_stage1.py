@@ -3,7 +3,7 @@ import csv
 import math
 import os
 import time
-from math import radians, cos, sin
+from math import radians
 from xml.etree import ElementTree
 
 import ezdxf
@@ -21,6 +21,9 @@ BOM_FILE = "input/BOM/BOM_old.tsv"
 
 ORIGIN_OFFSET_X = 5
 ORIGIN_OFFSET_Y = 2.5
+
+cutout_width = 2.54
+frame_width = 5
 
 component_summary = []
 components_top = []
@@ -96,22 +99,16 @@ first_pads = {}
 part_package = {}
 
 
-def load_pad_data(xml_root):
-    available_packages = dict()
-
+def load_pad_data(xml_root, suffix):
     element_list = xml_root.findall(".//element")
     for item in element_list:
-        element_name = item.attrib["name"]
-        package_name = item.attrib["package"]
+        element_name = item.attrib["name"] + suffix
+        package_name = item.attrib["package"] + suffix
         part_package[element_name] = package_name
 
     package_list = xml_root.findall(".//package")
     for item in package_list:
-        package_name = item.attrib["name"]
-
-        # Extract pad data, positions are offsets
-        smd_pad_list = dict()
-        via_pad_list = dict()
+        package_name = item.attrib["name"] + suffix
 
         smd_list = item.findall("smd")
         for smd in smd_list:
@@ -122,9 +119,6 @@ def load_pad_data(xml_root):
             x = smd.attrib['x']
             y = smd.attrib['y']
             first_pads[package_name] = (float(x), float(y))
-            # pad = get_smd_pad_info(pad, smd)
-            # pad_name = smd.attrib["name"]
-            # smd_pad_list[pad_name] = pad'''
 
         pad_list = item.findall("pad")
         for via in pad_list:
@@ -135,9 +129,6 @@ def load_pad_data(xml_root):
             x = via.attrib['x']
             y = via.attrib['y']
             first_pads[package_name] = (float(x), float(y))
-
-        # package = Package(smd_pad_list, via_pad_list)
-        # available_packages[package_name] = package
 
 
 def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
@@ -181,7 +172,7 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
     component_summary.append(
             [pcb_name, len(components_top) - components_top_count, len(components_bottom) - components_bottom_count])
 
-    load_pad_data(xml_root)
+    load_pad_data(xml_root, suffix)
     # print("{}: {} top components / {} bottom components".format(pcb_name, len(components_top), len(components_bottom)))
 
     '''def draw_component_positions():
@@ -218,16 +209,25 @@ def draw_component_positions(filename, msp):
         font.normalize_rendering(0.5)
         # draw_text(name, float(x) + float(offset_x), float(y) + float(offset_y))
 
-        angle_rad = radians(int(rotation))
-
         # for pad in first_pads:
-        name = name[:-3]
+        name_mod = name[:-3]
+        board_suffix = name[-3:]
+        # packages = first_pads[board_suffix]
+
+        # if name_mod in packages
+
         if name in part_package:
             package = part_package[name]
+            # package_board = package + board_suffix
             if package in first_pads:
                 pad_position = first_pads[package]
                 pad_x = pad_position[0]
                 pad_y = pad_position[1]
+
+                angle_rad = radians(int(rotation))
+                # if name.endswith('_PB') or name.endswith('_MB'):
+                # pad_x, pad_y = pad_y, pad_x
+                # angle_rad = radians(int(rotation) - 90)
 
                 rot_x = pad_x * math.cos(angle_rad) - pad_y * math.sin(angle_rad)
                 rot_y = pad_x * math.sin(angle_rad) + pad_y * math.cos(angle_rad)
@@ -284,10 +284,14 @@ def main():
 
     setup()
 
-    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", 5 + 2.54, 5 + 2.54 * 2 + 57.15, True)  # 7.5 + 57.15
-    get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + 5 + 2.54 * 2, 57.15 + 5 + 2.54 * 2, True)
-    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", 5 + 2.54 * 2 + 57.15, 5 + 2.54)
-    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", "_SB", 5 + 2.54, 5 + 2.54)
+    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", frame_width + cutout_width,
+                   frame_width + cutout_width * 2 + 57.15, True)
+    get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + frame_width + cutout_width * 2,
+                   57.15 + frame_width + cutout_width * 2, True)
+    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", frame_width + cutout_width * 2 + 57.15,
+                   frame_width + cutout_width)
+    get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", "_SB", frame_width + cutout_width,
+                   frame_width + cutout_width)
 
     print(tabulate(component_summary, headers=["Name", "Components (top)", "Components (bottom)"]))
 

@@ -47,6 +47,10 @@ class GerberSettings:
     zero_suppression = "leading"
 
 board_outline_context = GerberComposition(settings=GerberSettings)
+copper_top_layer_context = GerberComposition(settings=GerberSettings)
+copper_bottom_layer_context = GerberComposition(settings=GerberSettings)
+soldermask_top_layer_context = GerberComposition(settings=GerberSettings)
+soldermask_bottom_layer_context = GerberComposition(settings=GerberSettings)
 cream_top_layer_context = GerberComposition(settings=GerberSettings)
 cream_bot_layer_context = GerberComposition(settings=GerberSettings)
 engrave_top_layer_context = GerberComposition(settings=GerberSettings)
@@ -131,6 +135,8 @@ def add_pcb_top(pcb_name, x, y, rotate=False, generate_frame=True, merge_outline
         board_outline_context.merge(board_outline)
 
     add_layer(cream_top_layer_context, pcb_file_path + ".topcream.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(copper_top_layer_context, pcb_file_path + ".toplayer.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(soldermask_top_layer_context, pcb_file_path + ".topsoldermask.ger", board_pos_x, board_pos_y, rotate)
 
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
 
@@ -162,6 +168,8 @@ def add_pcb_bottom(pcb_name, x, y, rotate=False, generate_frame=True, merge_outl
         board_outline_context.merge(board_outline)
 
     add_layer(cream_bot_layer_context, pcb_file_path + ".bottomcream-mirrored.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(copper_bot_layer_context, pcb_file_path + ".bottomlayer-mirrored.ger", board_pos_x, board_pos_y, rotate)
+    add_layer(soldermask_bot_layer_context, pcb_file_path + ".bottomsoldermask-mirrored.ger", board_pos_x, board_pos_y, rotate)
 
     pcb_info.append([pcb_name, x, y, board_width, board_height, board_offset_x, board_offset_y])
 
@@ -199,6 +207,11 @@ def main():
     cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
     engrave_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
     engrave_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
+
+    copper_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
+    copper_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomenlayer.ger")
+    soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")
+    soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'],
                    tablefmt='orgtbl'))

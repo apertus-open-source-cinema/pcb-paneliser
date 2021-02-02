@@ -48,9 +48,9 @@ class GerberSettings:
 
 board_outline_context = GerberComposition(settings=GerberSettings)
 copper_top_layer_context = GerberComposition(settings=GerberSettings)
-copper_bottom_layer_context = GerberComposition(settings=GerberSettings)
+copper_bot_layer_context = GerberComposition(settings=GerberSettings)
 soldermask_top_layer_context = GerberComposition(settings=GerberSettings)
-soldermask_bottom_layer_context = GerberComposition(settings=GerberSettings)
+soldermask_bot_layer_context = GerberComposition(settings=GerberSettings)
 cream_top_layer_context = GerberComposition(settings=GerberSettings)
 cream_bot_layer_context = GerberComposition(settings=GerberSettings)
 engrave_top_layer_context = GerberComposition(settings=GerberSettings)

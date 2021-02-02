@@ -15,6 +15,16 @@ do echo ${f};
 gerbv ${f} -x rs274x -umm -T0x0r90 -o output_rotated/${f##*/}
 done;
 
+for f in $1/*toplayer.ger;  
+do echo ${f};
+gerbv ${f} -x rs274x -umm -T0x0r90 -o output_rotated/${f##*/}
+done;
+
+for f in $1/*topsoldermask.ger;  
+do echo ${f};
+gerbv ${f} -x rs274x -umm -T0x0r90 -o output_rotated/${f##*/}
+done;
+
 
 mv $1 $1_original
 mv output_rotated $1

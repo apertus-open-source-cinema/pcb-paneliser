@@ -271,12 +271,11 @@ def load_bom_components():
             next(bom_file)
         reader = csv.DictReader(bom_file, delimiter='\t')
         for row in reader:
-            pcb_name = row["PCB"][:2]
             parts = row['Combined Sch. Reference (*.asc)'].split(',')
             tele_id = row["Tele ID"]
             for part in parts:
                 part = part.strip()
-                tele_components[part + "_" + pcb_name] = tele_id.strip()
+                tele_components[part] = tele_id.strip()
 
 
 def main():

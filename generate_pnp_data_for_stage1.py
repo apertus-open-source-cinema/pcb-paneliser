@@ -173,30 +173,12 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
             [pcb_name, len(components_top) - components_top_count, len(components_bottom) - components_bottom_count])
 
     load_pad_data(xml_root, suffix)
-    # print("{}: {} top components / {} bottom components".format(pcb_name, len(components_top), len(components_bottom)))
-
-    '''def draw_component_positions():
-        for element in components_top:
-            name, x, y, rotation, *temp = element
-            components_top_msp.add_lwpolyline([(0.0, 0.0), (0.0, 0.3)], format="xy").rotate_z(
-                    radians(int(rotation))).translate(x, y, 0)
-            components_top_msp.add_circle((x, y), 0.2)
-    
-        for element in components_bottom:
-            name, x, y, rotation, *temp = element
-            components_bottom_msp.add_lwpolyline([(0.0, 0.0), (0.0, 0.3)], format="xy").rotate_z(
-                    radians(int(rotation))).translate(x, y, 0)
-            components_bottom_msp.add_circle((x, y), 0.2)'''
 
 
 def draw_component_positions(filename, msp):
     # Draw origin
     msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.2)
     msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.0)
-
-    # Draw origin
-    # msp.add_circle((0.0, 0.0), 0.2)
-    # msp.add_circle((0.0, 0.0), 0.0)
 
     file = open(filename, 'r')
     offset_x, offset_y, *temp = file.readline().replace(',', '.').split('|')
@@ -209,30 +191,20 @@ def draw_component_positions(filename, msp):
         font.normalize_rendering(0.5)
         # draw_text(name, float(x) + float(offset_x), float(y) + float(offset_y))
 
-        # for pad in first_pads:
-        name_mod = name[:-3]
-        board_suffix = name[-3:]
-        # packages = first_pads[board_suffix]
-
-        # if name_mod in packages
-
         if name in part_package:
             package = part_package[name]
-            # package_board = package + board_suffix
             if package in first_pads:
                 pad_position = first_pads[package]
                 pad_x = pad_position[0]
                 pad_y = pad_position[1]
 
                 angle_rad = radians(int(rotation))
-                # if name.endswith('_PB') or name.endswith('_MB'):
-                # pad_x, pad_y = pad_y, pad_x
-                # angle_rad = radians(int(rotation) - 90)
 
                 rot_x = pad_x * math.cos(angle_rad) - pad_y * math.sin(angle_rad)
                 rot_y = pad_x * math.sin(angle_rad) + pad_y * math.cos(angle_rad)
                 msp.add_circle((rot_x + float(offset_x) + float(x),
                                 rot_y + float(offset_y) + float(y)), 0.1)
+                # draw_text(package, rot_x + float(x) + float(offset_x), rot_y + float(y) + float(offset_y))
 
 
 def write_origin(file_top, file_bottom):

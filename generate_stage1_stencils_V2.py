@@ -205,11 +205,13 @@ def main():
 
     cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
     cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
+
     engrave_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
     engrave_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
 
     copper_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
-    copper_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomenlayer.ger")
+    copper_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
+
     soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")
     soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
 

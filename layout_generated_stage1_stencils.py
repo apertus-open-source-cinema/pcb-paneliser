@@ -23,6 +23,7 @@ class GerberSettings:
 
 
 stencil_context = GerberComposition(settings=GerberSettings)
+engrave_context = GerberComposition(settings=GerberSettings)
 
 
 def setup():
@@ -45,6 +46,9 @@ def main():
     cream_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
     cream_layer.to_metric()
     stencil_context.merge(cream_layer)
+    engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
+    engrave_layer.to_metric()
+    engrave_context.merge(engrave_layer)
 
     # Bottom layer
     offset = 210
@@ -52,9 +56,14 @@ def main():
     cream_layer.to_metric()
     cream_layer.offset(offset)
     stencil_context.merge(cream_layer)
+    engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
+    engrave_layer.to_metric()
+    engrave_layer.offset(offset)
+    engrave_context.merge(engrave_layer)
 
 
-    stencil_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.stencil.ger")
+    stencil_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.cut.ger")
+    engrave_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.engrave.ger")
 
     end_time = time.time()
     elapsed_time = end_time - start_time

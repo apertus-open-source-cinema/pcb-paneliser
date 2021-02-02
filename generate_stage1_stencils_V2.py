@@ -24,6 +24,7 @@ from tabulate import tabulate
 
 from frame_generator import generate_pcb_frame, generate_pcb_bridges, generate_outer_frame
 
+ELEMENTS_DIR = "input/elements/"
 INPUT_DIR = "input/tele_variant/"
 OUTPUT_DIR = "output_stage1/"
 TEMP_DIR = "temp/"
@@ -48,6 +49,8 @@ class GerberSettings:
 board_outline_context = GerberComposition(settings=GerberSettings)
 cream_top_layer_context = GerberComposition(settings=GerberSettings)
 cream_bot_layer_context = GerberComposition(settings=GerberSettings)
+engrave_top_layer_context = GerberComposition(settings=GerberSettings)
+engrave_bot_layer_context = GerberComposition(settings=GerberSettings)
 
 
 def setup():
@@ -83,6 +86,23 @@ def add_layer(context, file_path, x, y, rotate):
 
     layer.offset(x, y)
     context.merge(layer)
+
+
+def place_top_fiducial(x, y):
+    # Copper fiducial
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_1.20mm_dia_circle.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    engrave_top_layer_context.merge(fiducial)
+
+
+def place_bot_fiducial(x, y):
+    # Copper fiducial
+    fiducial = gerberex.read(ELEMENTS_DIR + "fiducial_1.20mm_dia_circle.gbr")
+    fiducial.to_metric()
+    fiducial.offset(x, y)
+    engrave_bot_layer_context.merge(fiducial)
+
 
 def add_pcb_top(pcb_name, x, y, rotate=False, generate_frame=True, merge_outline=True):
     pcb_file_path = INPUT_DIR + pcb_name + "/" + pcb_name
@@ -165,10 +185,20 @@ def main():
     add_pcb_bottom("axiom_beta_main_board_v0.38_r1.2", 57.15 + cutout_width, 57.15 + cutout_width)
     add_pcb_bottom("axiom_beta_power_board_v0.38_r1.2b", 0, 57.15 + cutout_width)
 
+    # fiducials in extra engrave layer
+    place_top_fiducial(5, 2.5)
+    #place_top_fiducial(5, panel_height - 2.5)
+    place_top_fiducial(panel_width - 5, panel_height - 2.5)
+    place_bot_fiducial(panel_width - 5, 2.5)
+    place_bot_fiducial(5, panel_height - 2.5)
+    #place_bot_fiducial(panel_width - 5, panel_height - 2.5)
+
     area = [0, 0, panel_width, panel_height]
 
     cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
     cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
+    engrave_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
+    engrave_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'],
                    tablefmt='orgtbl'))

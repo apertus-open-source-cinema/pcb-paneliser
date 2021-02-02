@@ -17,7 +17,7 @@ OUTPUT_DIR = "output_stage1_pnp/"
 EAGLE_DATA_DIR = "input/EAGLE/"
 TEMP_DIR = "temp/"
 
-BOM_FILE = "input/BOM/BOM_old.tsv"
+BOM_FILE = "input/BOM/BOM.tsv"
 
 ORIGIN_OFFSET_X = 5
 ORIGIN_OFFSET_Y = 2.5

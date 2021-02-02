@@ -24,6 +24,8 @@ class GerberSettings:
 
 stencil_context = GerberComposition(settings=GerberSettings)
 engrave_context = GerberComposition(settings=GerberSettings)
+copper_context = GerberComposition(settings=GerberSettings)
+soldermask_context = GerberComposition(settings=GerberSettings)
 
 
 def setup():
@@ -46,9 +48,20 @@ def main():
     cream_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
     cream_layer.to_metric()
     stencil_context.merge(cream_layer)
+
     engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
     engrave_layer.to_metric()
     engrave_context.merge(engrave_layer)
+
+    copper_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
+    copper_layer.to_metric()
+    copper_context.merge(copper_layer)
+
+    soldermask_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")
+    soldermask_layer.to_metric()
+    soldermask_context.merge(soldermask_layer)
+
+
 
     # Bottom layer
     offset = 210
@@ -56,14 +69,27 @@ def main():
     cream_layer.to_metric()
     cream_layer.offset(offset)
     stencil_context.merge(cream_layer)
+
     engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
     engrave_layer.to_metric()
     engrave_layer.offset(offset)
     engrave_context.merge(engrave_layer)
 
+    copper_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
+    copper_layer.to_metric()
+    copper_layer.offset(offset)
+    copper_context.merge(copper_layer)
+
+    soldermask_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
+    soldermask_layer.to_metric()
+    soldermask_layer.offset(offset)
+    soldermask_context.merge(soldermask_layer)
+
 
     stencil_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.cut.ger")
     engrave_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.engrave.ger")
+    copper_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.copper.ger")
+    soldermask_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel_stencil.soldermask.ger")
 
     end_time = time.time()
     elapsed_time = end_time - start_time

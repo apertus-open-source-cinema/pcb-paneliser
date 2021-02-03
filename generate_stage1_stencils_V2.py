@@ -204,16 +204,16 @@ def main():
     area = [0, 0, panel_width, panel_height]
 
     cream_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topcream.ger")
-    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
+    cream_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomcream-mirrored.ger")
 
     engrave_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topengrave.ger")
-    engrave_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
+    engrave_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomengrave-mirrored.ger")
 
     copper_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.toplayer.ger")
-    copper_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
+    copper_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomlayer-mirrored.ger")
 
     soldermask_top_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.topsoldermask.ger")
-    soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
+    soldermask_bot_layer_context.dump(OUTPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask-mirrored.ger")
 
     print(tabulate(pcb_info, headers=['Name', 'X', 'Y', 'Width', 'Height', 'Offset X', 'Offset Y'],
                    tablefmt='orgtbl'))

@@ -65,22 +65,22 @@ def main():
 
     # Bottom layer
     offset = 210
-    cream_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomcream.ger")
+    cream_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomcream-mirrored.ger")
     cream_layer.to_metric()
     cream_layer.offset(offset)
     stencil_context.merge(cream_layer)
 
-    engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomengrave.ger")
+    engrave_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomengrave-mirrored.ger")
     engrave_layer.to_metric()
     engrave_layer.offset(offset)
     engrave_context.merge(engrave_layer)
 
-    copper_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomlayer.ger")
+    copper_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomlayer-mirrored.ger")
     copper_layer.to_metric()
     copper_layer.offset(offset)
     copper_context.merge(copper_layer)
 
-    soldermask_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask.ger")
+    soldermask_layer = gerberex.read(INPUT_DIR + "axiom_beta_mixed_panel.bottomsoldermask-mirrored.ger")
     soldermask_layer.to_metric()
     soldermask_layer.offset(offset)
     soldermask_context.merge(soldermask_layer)

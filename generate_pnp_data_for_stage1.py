@@ -1,4 +1,5 @@
 # IMPORTANT: Ensure that the export of .mnt and .mnb files from EAGLE  was done for "Tele" variant
+
 import csv
 import math
 import os
@@ -12,7 +13,7 @@ from HersheyFonts import HersheyFonts
 from gerberex import GerberComposition
 from tabulate import tabulate
 
-INPUT_DIR = "input/tele_variant/"
+#INPUT_DIR = "input/tele_variant/"
 OUTPUT_DIR = "output_stage1_pnp/"
 EAGLE_DATA_DIR = "input/EAGLE/"
 TEMP_DIR = "temp/"
@@ -56,11 +57,11 @@ def setup():
     if not os.path.exists(TEMP_DIR):
         os.makedirs(TEMP_DIR)
 
-    if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
-        generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
+    #if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
+    generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
 
-    if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
-        generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
+    #if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
+    generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
 
 
 def get_board_dimensions(xml_root):

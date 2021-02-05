@@ -7,21 +7,20 @@ import time
 from math import radians
 from xml.etree import ElementTree
 
-import ezdxf
+import drawSvg as draw
 import gerberex
-from HersheyFonts import HersheyFonts
-from gerberex import GerberComposition
+from PIL import Image
 from tabulate import tabulate
 
-#INPUT_DIR = "input/tele_variant/"
+INPUT_DIR = "input/pnp_background/"
 OUTPUT_DIR = "output_stage1_pnp/"
 EAGLE_DATA_DIR = "input/EAGLE/"
 TEMP_DIR = "temp/"
 
 BOM_FILE = "input/BOM/BOM.tsv"
 
-ORIGIN_OFFSET_X = 5
-ORIGIN_OFFSET_Y = 2.5
+ORIGIN_OFFSET_X = 2.5
+ORIGIN_OFFSET_Y = 5
 
 cutout_width = 2.54
 frame_width = 5
@@ -31,24 +30,16 @@ components_top = []
 components_bottom = []
 tele_components = {}
 
-components_top_doc = ezdxf.new('R2010')
-components_top_msp = components_top_doc.modelspace()
+drawing_top = None
+drawing_bottom = None
+factor = 1.0
 
-components_bottom_doc = ezdxf.new('R2010')
-components_bottom_msp = components_bottom_doc.modelspace()
-
-font = HersheyFonts()
-font.load_default_font()
+output_image_height = 0
 
 
-class GerberSettings:
-    format = [3, 3]
-    units = "metric"
-    zero_suppression = "leading"
-
-
-component_context_top = GerberComposition(settings=GerberSettings)
-component_context_bottom = GerberComposition(settings=GerberSettings)
+def get_image_size(image_file_name):
+    image = Image.open(image_file_name)
+    return image.width, image.height
 
 
 def setup():
@@ -57,11 +48,40 @@ def setup():
     if not os.path.exists(TEMP_DIR):
         os.makedirs(TEMP_DIR)
 
-    #if not os.path.exists(OUTPUT_DIR + "pnp_background_top.ger"):
-    generate_background('top', 'output_stage1/axiom_beta_mixed_panel.topcream.ger')
+    background_top = INPUT_DIR + "axiom_beta_mixed_panel.top_rotated.png"
+    background_bottom = INPUT_DIR + "axiom_beta_mixed_panel.bottom_rotated.png"
 
-    #if not os.path.exists(OUTPUT_DIR + "pnp_background_bottom.ger"):
-    generate_background('bottom', 'output_stage1/axiom_beta_mixed_panel.bottomcream.ger')
+    board_x = 0
+    board_y = 0
+
+    board_outline = gerberex.read('output_stage1/axiom_beta_mixed_panel.boardoutline.ger')
+
+    board_width = board_outline.size[1]
+    board_height = board_outline.size[0]
+
+    image_width, image_height = get_image_size(background_top)
+
+    global drawing_top, drawing_bottom, factor, output_image_height
+
+    output_image_width = image_width / 2
+    output_image_height = image_height / 2
+
+    factor = (output_image_width / board_width + output_image_height / board_height) / 2
+
+    # Fixed size for PCB image
+    drawing_top = draw.Drawing(output_image_width, output_image_height)
+    drawing_bottom = draw.Drawing(output_image_width, output_image_height)
+
+    # Draw background
+    drawing_top.append(draw.Image(board_x * factor, board_y * factor,
+                                  output_image_width, output_image_height, background_top))
+
+    drawing_top.append(draw.Rectangle(0, 0, output_image_width, output_image_height, fill="black", opacity=0.5))
+
+    drawing_bottom.append(draw.Image(board_x * factor, board_y * factor,
+                                     output_image_width, output_image_height, background_bottom))
+
+    drawing_bottom.append(draw.Rectangle(0, 0, output_image_width, output_image_height, fill="black", opacity=0.5))
 
 
 def get_board_dimensions(xml_root):
@@ -86,14 +106,6 @@ def get_board_dimensions(xml_root):
     offset_y = abs(max_y) - abs(min_y)
 
     return min_x, min_y, max_x - min_x, max_y - min_y, abs(offset_x), abs(offset_y)
-
-
-def draw_text(text, x, y):
-    for (x1, y1), (x2, y2) in font.lines_for_text(text):
-        x1, y1, x2, y2 = x1 + x, y1 + y, x2 + x, y2 + y
-
-        components_top_msp.add_lwpolyline([(x1, y1), (x2, y2)],
-                                          format='xy')
 
 
 first_pads = {}
@@ -149,8 +161,8 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
     for line in file:
         name, x, y, rotation, *temp = line.split()
         if rotated:
-            x, y = -float(y), x
-            rotation = int(rotation) + 90
+            x, y = y, -float(x)
+            rotation = int(rotation) + 270
 
         x = float(x) + offset_x + board_width / 2.0 + board_offset_x / 2.0
         y = float(
@@ -162,12 +174,12 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
     for line in file:
         name, x, y, rotation, *temp = line.split()
         if rotated:
-            x, y = -float(y), x
-            rotation = int(rotation) + 180
+            x, y = y, -float(x)
+            rotation = int(rotation) + 90
 
-        x = float(x) + offset_x + board_width / 2 + board_offset_x / 2
+        x = float(x) + offset_x + board_width / 2 + board_offset_x / 2.0
         y = float(
-                y) + offset_y + board_height / 2 + board_offset_y / 2
+                y) + offset_y + board_height / 2 + board_offset_y / 2.0
         x, y = x - ORIGIN_OFFSET_X, y - ORIGIN_OFFSET_Y
         components_bottom.append((name + suffix, x, y, int(rotation) % 360))
     component_summary.append(
@@ -176,36 +188,45 @@ def get_components(pcb_name, suffix, offset_x, offset_y, rotated=False):
     load_pad_data(xml_root, suffix)
 
 
-def draw_component_positions(filename, msp):
-    # Draw origin
-    msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.2)
-    msp.add_circle((ORIGIN_OFFSET_X, ORIGIN_OFFSET_Y), 0.0)
-
+def draw_component_positions(filename, drawing, bottom_layer=False):
     file = open(filename, 'r')
     offset_x, offset_y, *temp = file.readline().replace(',', '.').split('|')
     file.readline()  # Skip empty line
     for entry in file:
         name, tele_id, x, y, rotation = entry.replace(',', '.').rstrip().split('|')
-        msp.add_lwpolyline([(0.0, 0.0), (0.0, 0.5)], format="xy").rotate_z(
-                radians(int(rotation))).translate(float(x) + float(offset_x), float(y) + float(offset_y), 0)
-        msp.add_circle((float(x) + float(offset_x), float(y) + float(offset_y)), 0.2)
-        font.normalize_rendering(0.5)
-        # draw_text(name, float(x) + float(offset_x), float(y) + float(offset_y))
+        x = float(x) + float(offset_x)
+        y = float(y) + float(offset_y)
+        x = x * factor
+        y = y * factor
+
+        if bottom_layer:
+            y = output_image_height - y
+            rotation = int(rotation) + 180
+
+        drawing.append(
+                draw.Circle(x, y, 0.3 * factor, fill="yellow"))
+        rotation_transform = str.format(
+                "translate({1}, {2}) rotate({0}) ", str(-int(rotation)), str(x), str(-y))
+
+        drawing.append(
+                draw.Line(0, 0, 0, 1 * factor, stroke="red", stroke_width=2, transform=rotation_transform))
 
         if name in part_package:
             package = part_package[name]
             if package in first_pads:
                 pad_position = first_pads[package]
-                pad_x = pad_position[0]
-                pad_y = pad_position[1]
+                pad_x = pad_position[0] * factor
+                pad_y = pad_position[1] * factor
 
                 angle_rad = radians(int(rotation))
-
                 rot_x = pad_x * math.cos(angle_rad) - pad_y * math.sin(angle_rad)
                 rot_y = pad_x * math.sin(angle_rad) + pad_y * math.cos(angle_rad)
-                msp.add_circle((rot_x + float(offset_x) + float(x),
-                                rot_y + float(offset_y) + float(y)), 0.1)
-                # draw_text(package, rot_x + float(x) + float(offset_x), rot_y + float(y) + float(offset_y))
+
+                rotation_transform = str.format(
+                        "translate({1}, {2}) rotate({0})", str(-int(rotation)), str(x), str(-y))
+                drawing.append(draw.Circle(pad_x, pad_y, 0.2 * factor, fill="blue", transform=rotation_transform))
+                drawing.append(
+                        draw.Text(name, 1 * factor, x - rot_x, y + rot_y, stroke="#444444", fill="lightgreen"))
 
 
 def write_origin(file_top, file_bottom):
@@ -229,15 +250,6 @@ def write_component_positions(file_top, file_bottom):
                                           str(round(y, 4)).replace(".", ","), str(rotation).replace(".", ",")))
 
 
-def generate_background(suffix, cream_layer_file):
-    board_context = GerberComposition(settings=GerberSettings)
-    cream_layer = gerberex.read(cream_layer_file)
-    board_context.merge(cream_layer)
-    board_outline = gerberex.read('output_stage1/axiom_beta_mixed_panel.boardoutline.ger')
-    board_context.merge(board_outline)
-    board_context.dump(OUTPUT_DIR + "pnp_background_" + suffix + ".ger")
-
-
 def load_bom_components():
     with open(BOM_FILE) as bom_file:
         for i in range(4):
@@ -256,14 +268,14 @@ def main():
 
     setup()
 
-    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", frame_width + cutout_width,
-                   frame_width + cutout_width * 2 + 57.15, True)
+    get_components("axiom_beta_main_board_v0.38_r1.2", "_MB", frame_width + cutout_width * 2 + 57.15,
+                   57.15 + frame_width + cutout_width * 2)
     get_components("axiom_beta_power_board_v0.38_r1.2b", "_PB", 57.15 + frame_width + cutout_width * 2,
-                   57.15 + frame_width + cutout_width * 2, True)
-    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", frame_width + cutout_width * 2 + 57.15,
                    frame_width + cutout_width)
+    get_components("axiom_beta_interface_dummy_v0.13_r1.6", "_IB", frame_width + cutout_width,
+                   frame_width + cutout_width, True)
     get_components("axiom_beta_sensor_cmv12000_tht_v0.16_r1.8c", "_SB", frame_width + cutout_width,
-                   frame_width + cutout_width)
+                   57.15 + frame_width + cutout_width * 2, True)
 
     print(tabulate(component_summary, headers=["Name", "Components (top)", "Components (bottom)"]))
 
@@ -280,20 +292,11 @@ def main():
     file_bottom.flush()
     file_bottom.close()
 
-    draw_component_positions(OUTPUT_DIR + "pnp_data_top.asc", components_top_msp)
-    draw_component_positions(OUTPUT_DIR + "pnp_data_bottom.asc", components_bottom_msp)
+    draw_component_positions(OUTPUT_DIR + "pnp_data_top.asc", drawing_top)
+    drawing_top.savePng(OUTPUT_DIR + "pnp_output_top.png")
 
-    components_top_doc.saveas(TEMP_DIR + "components_top.dxf")
-    dxf = gerberex.read(TEMP_DIR + "components_top.dxf")
-    dxf.width = 0.05
-    component_context_top.merge(dxf)
-    component_context_top.dump(OUTPUT_DIR + "component_position_top.ger")
-
-    components_bottom_doc.saveas(TEMP_DIR + "components_bottom.dxf")
-    dxf = gerberex.read(TEMP_DIR + "components_bottom.dxf")
-    dxf.width = 0.05
-    component_context_bottom.merge(dxf)
-    component_context_bottom.dump(OUTPUT_DIR + "component_position_bottom.ger")
+    draw_component_positions(OUTPUT_DIR + "pnp_data_bottom.asc", drawing_bottom, True)
+    drawing_bottom.savePng(OUTPUT_DIR + "pnp_output_bottom.png")
 
     end_time = time.time()
     elapsed_time = end_time - start_time
